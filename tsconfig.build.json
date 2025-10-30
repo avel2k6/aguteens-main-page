@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "./src/demo",
+    "tests",
+    "build",
+    "babel.config.js",
+    "eslint.config.mts",
+    "node_modules"
+  ],
+}

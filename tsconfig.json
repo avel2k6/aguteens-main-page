@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
+    "target": "es2015"
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./tests/*.js",
+    "./build/*.js",
+    "babel.config.js",
+    "eslint.config.mts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
