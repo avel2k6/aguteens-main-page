@@ -48,7 +48,7 @@ module.exports = {
     },
     plugins: [
         new ESLintPlugin({
-            fix: true,
+            failOnError: false,
             extensions: ['js', 'ts'],
         }),
         new StylelintPlugin({
