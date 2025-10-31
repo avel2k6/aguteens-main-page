@@ -11,6 +11,8 @@ import './components/block-welcome';
 import './components/block-faq';
 import './components/block-cases';
 import './components/block-teachers';
+import './components/block-tickets';
+import './components/ticket';
 
 import { initList, TList } from './components/list';
 import { slowInfiniteScroll } from './components/horizontal-scroll';

@@ -1,0 +1,66 @@
+.ticket {
+  border-radius: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__link {
+    display: flex;
+    width: 347px;
+    height: 171px;
+    flex-direction: column;
+    padding: 20px 30px 30px;
+    border-radius: 30px;
+    background: linear-gradient(107deg, rgb(32 32 32 / 80%) -1.68%, rgb(32 32 32 / 0%) 100%);
+    color: #FFF;
+    text-decoration: none;
+
+    &:hover {
+      border-radius: 30px;
+      background: linear-gradient(108deg, rgb(219 25 51 / 80%) 0%, rgb(219 25 51 / 0%) 99.51%) 50%;
+      text-decoration: none;
+    }
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__type {
+    font-family: HelveticaNeueCyr-Light, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 550;
+    letter-spacing: 4.8px;
+    line-height: 100%; /* 12px */
+  }
+
+  &__price {
+    font-family: Oswald, sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 90%; /* 28.8px */
+  }
+
+  &__empty {
+    flex-grow: 1;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    font-family: HelveticaNeueCyr, sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 90%; /* 28.8px */
+  }
+
+  &__description {
+    font-family: HelveticaNeueCyr-Light, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 90%;
+  }
+}
