@@ -3,6 +3,9 @@
   flex-direction: column;
 
   &__block {
+    position: relative;
+    z-index: 0;
+
     &_main {
       display: flex;
       height: 712px;
@@ -12,6 +15,13 @@
 
     &_links {
       background: #DB1933;
+    }
+
+    &_welcome {
+      /* Чтобы шум не убегал за границы блока */
+      overflow: hidden;
+      height: 344px;
+      background:  url("../../images/3-block(VIDEO).png") lightgray 50% / cover no-repeat;
     }
   }
 
