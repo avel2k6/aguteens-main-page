@@ -71,11 +71,6 @@ export default defineConfig(
             '@typescript-eslint/prefer-function-type': 'error',
             '@typescript-eslint/prefer-optional-chain': 'error',
             '@typescript-eslint/restrict-plus-operands': 'error',
-
-
-            // <--
-            // TODO: эта ошибка только в тестах, она уйдёт после обновления Jest и переписывания тестов на TS
-            'no-undef': 'off',
         },
     },
     globalIgnores(['dist/']),
