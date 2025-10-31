@@ -9,8 +9,11 @@ import './components/block-links';
 import './components/block-offer';
 import './components/block-welcome';
 import './components/block-faq';
+import './components/block-cases';
+import './components/block-teachers';
 
-import {initList, TList} from './components/list';
+import { initList, TList } from './components/list';
+import { slowInfiniteScroll } from './components/horizontal-scroll';
 
 
 const firstFAQ: TList = [
@@ -42,5 +45,41 @@ const firstFAQ: TList = [
         return;
     }
 
-    initList(first, firstFAQ, 1);
+    initList(first, firstFAQ, 0);
+})();
+
+(() => {
+    const scrollableCases = document.querySelector('.block-cases__cards');
+    if (!scrollableCases) {
+        return;
+    }
+    if (!(scrollableCases instanceof HTMLDivElement)) {
+        return;
+    }
+    slowInfiniteScroll(
+        scrollableCases,
+        {
+            direction: 'left',
+            infinite: true,
+            controls: true,
+        }
+    );
+})();
+
+(() => {
+    const scrollableCases = document.querySelector('.block-teachers__cards');
+    if (!scrollableCases) {
+        return;
+    }
+    if (!(scrollableCases instanceof HTMLDivElement)) {
+        return;
+    }
+    slowInfiniteScroll(
+        scrollableCases,
+        {
+            direction: 'left',
+            infinite: true,
+            controls: true,
+        }
+    );
 })();

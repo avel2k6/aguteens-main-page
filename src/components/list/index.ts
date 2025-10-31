@@ -102,4 +102,5 @@ export const initList = (
     };
 
     render();
+    rerender();
 };

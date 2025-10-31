@@ -1,13 +1,13 @@
 @import url("../../common/animations");
 
 .noise {
-  position: fixed;
+  position: absolute;
   z-index: 1;
-  inset: -50%;
   width: 200%;
   height: 200vh;
   animation: @const-animation-noise .2s infinite;
-  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+  background: transparent url('../../images/noise-transparent.png') repeat 0 0;
+  inset: -50%;
   opacity: .9;
   visibility: visible;
 }

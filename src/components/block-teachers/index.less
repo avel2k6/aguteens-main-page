@@ -1,0 +1,85 @@
+.block-teachers {
+  &__top {
+    display: flex;
+    max-width: 1024px;
+    justify-content: space-between;
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  &__title {
+    margin-bottom: 90px;
+    color: #FFF;
+    font-family: HelveticaNeueCyr, sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 90%; /* 43.2px */
+  }
+
+  &__text {
+    width: 429px;
+    margin-bottom: 90px;
+    color: #FFF;
+    font-family: HelveticaNeueCyr-Light, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 28.8px */
+  }
+
+  &__cards {
+    display: flex;
+    overflow: hidden;
+    flex-flow: row nowrap;
+    padding: 50px;
+    margin: -50px -100px;
+    gap: 10px;
+  }
+
+  &__card {
+    position: relative;
+    z-index: 1;
+    width: 240px;
+    min-width: 240px;
+    border-radius: 30px;
+    transition: scale 0.3s ease-in-out;
+
+    &:hover {
+      z-index: 2;
+      background: #DB1933;
+      scale: 1.2;
+    }
+
+    &__image {
+      width: 240px;
+      height: 240px;
+      border-radius: 30px;
+      background: lightgray 50% / cover no-repeat;
+    }
+
+    &__title {
+      margin-bottom: 10px;
+      color: #FFF;
+      font-family: HelveticaNeueCyr, sans-serif;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 90%;/* 28.8px */
+    }
+
+    &__text {
+      color: #FFF;
+      font-family: HelveticaNeueCyr-Light, sans-serif;
+      font-size: 21px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 90%; /* 16.2px */
+    }
+
+    &__info {
+      padding: 32px 36px 36px;
+      color: #fff;
+    }
+  }
+}

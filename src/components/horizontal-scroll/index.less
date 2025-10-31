@@ -1,0 +1,30 @@
+.horizontal-scroll {
+  position: relative;
+
+  &__control {
+    position: absolute;
+    z-index: 100;
+    top: calc(50% - 64px);
+    width: 64px;
+    height: 64px;
+    padding: 20px;
+    background-image: url("../../icons/down.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &_right {
+      right: 0;
+      transform: rotate(-90deg);
+    }
+
+    &_left {
+      left: 0;
+      transform: rotate(90deg);
+    }
+  }
+}
