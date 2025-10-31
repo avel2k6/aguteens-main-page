@@ -1,6 +1,7 @@
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     mode: 'development',
@@ -8,6 +9,10 @@ module.exports = {
     devServer: {
         compress: true,
         port: 9000,
+        static: {
+            directory: path.resolve(__dirname, '..', 'assets'),
+            watch: true,
+        },
     },
     target: ['web', 'es5'],
     resolve: {

@@ -1,0 +1,35 @@
+.page {
+  display: flex;
+  flex-direction: column;
+
+  &__block {
+    &_main {
+      display: flex;
+      height: 712px;
+      align-items: flex-end;
+      background: linear-gradient(90deg, rgb(32 32 32 / 40%) 49.04%, rgb(32 32 32 / 0%) 100%), url("../../images/1-block.png") lightgray 50% / cover no-repeat;
+    }
+
+    &_links {
+      background: #DB1933;
+    }
+  }
+
+  &__content {
+    padding: 70px 100px;
+
+    &_centered {
+      max-width: 1024px;
+      margin: 0 auto;
+    }
+
+    &_small {
+      display: flex;
+      align-items: center;
+      align-self: stretch;
+      justify-content: center;
+      padding: 20px 10px;
+      gap: 10px;
+    }
+  }
+}
