@@ -21,7 +21,11 @@ import './components/buy-button';
 
 import { initList, TList } from './components/list';
 import { slowInfiniteScroll } from './components/horizontal-scroll';
+import { initHeader } from './components/header';
 
+(() => {
+    initHeader();
+})();
 
 (() => {
     const firstFAQ: TList = [

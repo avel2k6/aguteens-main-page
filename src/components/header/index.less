@@ -1,0 +1,133 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.header {
+  position: fixed;
+  z-index: 200;
+  width: 100%;
+  min-height: 300px;
+  animation: fadeIn 2s ease-in-out forwards;
+  background: #0000;
+  transition: all 0.2s ease-in-out;
+
+  &_scrolled {
+    min-height: 30px;
+    backdrop-filter: blur(5px);
+    background: rgb(219 25 51 / 80%);
+    transition: all 0.4s ease-in-out;
+  }
+
+  &__content_centered {
+    display: flex;
+    max-width: 1024px;
+    justify-content: space-between;
+    padding: 0 100px;
+    margin: 0 auto
+  }
+
+  &__logo {
+    position: relative;
+
+    &__agu {
+      position: absolute;
+      top: 130px;
+      left: -59px;
+      width: 138px;
+      height: 20px;
+      background: url("../../icons/AGU.svg") no-repeat;
+      background-size: contain;
+      transition: all 0.3s ease-in-out;
+
+      &_scrolled {
+        top: 20px;
+        width: 99px;
+      }
+    }
+
+    &__arcs {
+      position: absolute;
+      top: 60px;
+      left: -27px;
+      width: 213px;
+      height: 213px;
+      background-image: url("../../icons/arcs.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      transition: all 0.3s ease-in-out;
+
+      &_scrolled {
+        top: 11px;
+        left: 24px;
+        width: 47px;
+      }
+    }
+
+    &__family {
+      position: absolute;
+      top: 153px;
+      left: 0;
+      width: 76px;
+      height: 11px;
+      background: url("../../icons/family.svg") no-repeat;
+      background-size: contain;
+      transition: all 0.3s ease-in-out;
+
+      &_scrolled {
+        top: 37px;
+        left: -58px;
+        width: 50px;
+      }
+    }
+
+    &__forum {
+      position: absolute;
+      top: 170px;
+      left: 29px;
+      width: 47px;
+      height: 11px;
+      background: url("../../icons/forum.svg") no-repeat;
+      background-size: contain;
+      transition: all 0.3s ease-in-out;
+
+      &_scrolled {
+        top: 38px;
+        left: -6px;
+        width: 30px;
+      }
+    }
+  }
+
+  &__links {
+    display: flex;
+    padding: 10px 0;
+    gap: 20px;
+  }
+
+  &__link {
+    display: block;
+    width: 50px;
+    height: 50px;
+
+    &_menu {
+      background: url("../../icons/burger.svg") no-repeat;
+      background-size: contain;
+    }
+
+    &_cart {
+      background: url("../../icons/cart.svg") no-repeat;
+      background-size: contain;
+    }
+
+    &_lk {
+      background: url("../../icons/lk.svg") no-repeat;
+      background-size: contain;
+    }
+  }
+}
