@@ -16,6 +16,7 @@ const classes = {
     question: 'list__question',
     questionOpened: 'list__question_opened',
     answer: 'list__answer',
+    answerContent: 'list__answer__content',
     answerOpened: 'list__answer_opened',
 };
 
@@ -72,8 +73,13 @@ export const initList = (
 
             const answer = document.createElement('div');
             answer.classList.add(classes.answer);
-            answer.innerText = item.answer;
             answer.setAttribute(dataAttributes.index, `${index}`);
+
+            const answerContent = document.createElement('div');
+            answerContent.classList.add(classes.answerContent);
+            answerContent.innerText = item.answer;
+
+            answer.appendChild(answerContent);
 
             row.appendChild(question);
             row.appendChild(answer);
