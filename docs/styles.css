@@ -356,6 +356,12 @@ html {
 .page__block_review {
   background: #202020;
 }
+.page__block_video {
+  background: #202020;
+}
+.page__block_footer {
+  background: #DB1933;
+}
 .page__content {
   padding: 70px 100px;
 }
@@ -370,6 +376,9 @@ html {
   justify-content: center;
   padding: 20px 10px;
   gap: 10px;
+}
+.page__content_video {
+  padding: 10px 0;
 }
 
 /* Анимация шума */
@@ -937,6 +946,92 @@ html {
   font-weight: 900;
   line-height: 90%;
   /* 43.2px */
+}
+
+.block-video {
+  position: relative;
+}
+.block-video__top {
+  margin-bottom: 10px;
+}
+.block-video__cards {
+  display: flex;
+  overflow: hidden;
+  flex-flow: row nowrap;
+  gap: 10px;
+}
+.block-video__card {
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  min-width: 300px;
+  height: 300px;
+  border-radius: 30px;
+  background: lightgray 50% / cover no-repeat;
+  background-size: cover;
+}
+
+.footer {
+  display: flex;
+  color: #FFF;
+  font-family: HelveticaNeueCyr-Light, sans-serif;
+}
+.footer__block {
+  min-width: 50%;
+}
+.footer__block-title {
+  margin: 0 0 25px;
+  font-family: HelveticaNeueCyr, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  /* 28.8px */
+}
+.footer__list {
+  padding: 0;
+  margin: 0 0 40px;
+  list-style: none;
+}
+.footer__list__item {
+  margin-bottom: 15px;
+}
+.footer__list__item__title {
+  margin: 0 0 5px;
+  color: #FFF;
+  font-family: HelveticaNeueCyr, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+.footer__list__item__link {
+  color: #FFF;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  /* 18px */
+  text-decoration: none;
+}
+.footer__list__item__link:hover {
+  text-decoration: underline;
+}
+.footer__list__item__link_phone {
+  font-family: Osvald, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 90%;
+  /* 28.8px */
+}
+.footer__payment-logo {
+  width: 90px;
+  height: 24px;
+  margin-bottom: 20px;
+  background-image: url(902f6a3b08bf5304922f.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .list {
