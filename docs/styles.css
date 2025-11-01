@@ -360,7 +360,11 @@ html {
   background: #202020;
 }
 .page__block_footer {
-  background: #DB1933;
+  background-color: #DB1933;
+  background-image: url(695751f08b35526f7419.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 45% 100%;
 }
 .page__content {
   padding: 70px 100px;
@@ -870,7 +874,7 @@ html {
 .block-review__bottom {
   position: absolute;
   z-index: 100;
-  bottom: 0;
+  bottom: 20px;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -975,9 +979,10 @@ html {
   display: flex;
   color: #FFF;
   font-family: HelveticaNeueCyr-Light, sans-serif;
+  gap: 100px;
 }
 .footer__block {
-  min-width: 50%;
+  min-width: calc(50% - 50px);
 }
 .footer__block-title {
   margin: 0 0 25px;
@@ -1032,6 +1037,38 @@ html {
   background-image: url(902f6a3b08bf5304922f.svg);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.buy-button {
+  display: flex;
+  height: 95px;
+  align-items: center;
+  padding: 0 30px 0 38px;
+  border: none;
+  border-radius: 70px;
+  appearance: none;
+  background: #DB1933;
+  box-shadow: 0 4px 54px 0 rgba(0, 0, 0, 0.25);
+  gap: 10px;
+  text-decoration: none;
+}
+.buy-button__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0 12px 22px;
+  border-left: 2px dashed #FFF;
+  color: #FFF;
+  font-family: HelveticaNeueCyr, sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 550;
+  gap: 10px;
+  letter-spacing: -0.44px;
+  line-height: 90%;
+  /* 19.8px */
+  text-align: left;
+  text-transform: uppercase;
 }
 
 .list {
