@@ -452,7 +452,7 @@ html {
   flex-wrap: wrap;
   align-content: center;
   align-items: center;
-  padding: 90px 0 0 210px ;
+  padding: 90px 0 70px 210px ;
   gap: 30px;
 }
 .block-main__counter__count-wrapper {
@@ -1155,5 +1155,121 @@ html {
 .horizontal-scroll__control_left {
   left: 0;
   transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.header {
+  position: fixed;
+  z-index: 200;
+  width: 100%;
+  min-height: 300px;
+  animation: fadeIn 2s ease-in-out forwards;
+  background: #0000;
+  transition: all 0.2s ease-in-out;
+}
+.header_scrolled {
+  min-height: 30px;
+  backdrop-filter: blur(5px);
+  background: rgba(219, 25, 51, 0.8);
+  transition: all 0.4s ease-in-out;
+}
+.header__content_centered {
+  display: flex;
+  max-width: 1024px;
+  justify-content: space-between;
+  padding: 0 100px;
+  margin: 0 auto;
+}
+.header__logo {
+  position: relative;
+}
+.header__logo__agu {
+  position: absolute;
+  top: 130px;
+  left: -59px;
+  width: 138px;
+  height: 20px;
+  background: url(a2d8e773b5c1044251c6.svg) no-repeat;
+  background-size: contain;
+  transition: all 0.3s linear;
+}
+.header__logo__agu_scrolled {
+  top: 20px;
+  width: 99px;
+}
+.header__logo__arcs {
+  position: absolute;
+  top: 60px;
+  left: -27px;
+  width: 213px;
+  height: 213px;
+  background-image: url(915d7eef96ff72290c7d.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: all 0.3s linear;
+}
+.header__logo__arcs_scrolled {
+  top: 11px;
+  left: 24px;
+  width: 47px;
+}
+.header__logo__family {
+  position: absolute;
+  top: 153px;
+  left: 0;
+  width: 76px;
+  height: 11px;
+  background: url(afd3f59dccf771e7a1d8.svg) no-repeat;
+  background-size: contain;
+  transition: all 0.3s linear;
+}
+.header__logo__family_scrolled {
+  top: 37px;
+  left: -58px;
+  width: 50px;
+}
+.header__logo__forum {
+  position: absolute;
+  top: 170px;
+  left: 29px;
+  width: 47px;
+  height: 11px;
+  background: url(2d30871e5646060c29e2.svg) no-repeat;
+  background-size: contain;
+  transition: all 0.3s linear;
+}
+.header__logo__forum_scrolled {
+  top: 38px;
+  left: -6px;
+  width: 30px;
+}
+.header__links {
+  display: flex;
+  padding: 10px 0;
+  gap: 20px;
+}
+.header__link {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+.header__link_menu {
+  background: url(276d9304ff6563bf2ea4.svg) no-repeat;
+  background-size: contain;
+}
+.header__link_cart {
+  background: url(bb665c734e3f01b0270c.svg) no-repeat;
+  background-size: contain;
+}
+.header__link_lk {
+  background: url(7354175774cc0e7d6529.svg) no-repeat;
+  background-size: contain;
 }
 
