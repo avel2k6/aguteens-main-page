@@ -1,0 +1,70 @@
+.footer {
+  display: flex;
+  color: #FFF;
+  font-family: HelveticaNeueCyr-Light, sans-serif;
+
+  &__block {
+    min-width: 50%;
+  }
+
+  &__block-title {
+    margin: 0 0 25px;
+    font-family: HelveticaNeueCyr, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 28.8px */
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0 0 40px;
+    list-style: none;
+
+
+
+    &__item {
+      margin-bottom: 15px;
+
+      &__title {
+        margin: 0 0 5px;
+        color: #FFF;
+        font-family: HelveticaNeueCyr, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100%;
+      }
+
+      &__link {
+        color: #FFF;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%; /* 18px */
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &_phone {
+          font-family: Osvald, sans-serif;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 90%; /* 28.8px */
+        }
+      }
+    }
+  }
+
+  &__payment-logo {
+    width: 90px;
+    height: 24px;
+    margin-bottom: 20px;
+    background-image: url("../../icons/mir-logo.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
