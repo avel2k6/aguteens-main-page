@@ -3,6 +3,8 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -47,9 +49,17 @@ module.exports = {
                     'less-loader',
                 ],
             },
+            {
+                test: /\.(png|svg|jpg|gif|otf|ttf)$/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'dist',
+                },
+            },
         ],
     },
     plugins: [
+        new CleanWebpackPlugin({}),
         new ESLintPlugin({
             fix: true,
             extensions: ['js', 'jsx', 'ts', 'tsx'],
@@ -64,6 +74,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'assets/index.html',
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: path.resolve(__dirname, '..', 'assets','images'), to: path.resolve(__dirname, '..','docs','images')},
+            ]
         }),
     ],
 };
