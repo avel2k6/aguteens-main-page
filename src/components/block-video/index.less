@@ -1,0 +1,25 @@
+.block-video {
+  position: relative;
+
+  &__top {
+    margin-bottom: 10px;
+  }
+
+  &__cards {
+    display: flex;
+    overflow: hidden;
+    flex-flow: row nowrap;
+    gap: 10px;
+  }
+
+  &__card {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    min-width: 300px;
+    height: 300px;
+    border-radius: 30px;
+    background: lightgray 50% / cover no-repeat;
+    background-size: cover;
+  }
+}

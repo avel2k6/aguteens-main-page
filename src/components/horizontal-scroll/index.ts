@@ -4,12 +4,43 @@ const SCROLL_SPEED = 1;
 
 const SCROLL_DELAY = 20;
 
+const SCROLL_PADDING = 10;
+
+const REPEAT_COUNT = 10;
+
+const CACHE_DURATION = 2000;
+
 const classes = {
     component: 'horizontal-scroll',
     control: 'horizontal-scroll__control',
     scrollable: 'horizontal-scroll__scrollable',
     controlLeft: 'horizontal-scroll__control_left',
     controlRight: 'horizontal-scroll__control_right',
+};
+
+/**
+ * Кэш результатов проверки видимости элементов.
+ */
+const cache = new Map();
+
+/**
+ * Проверяет, виден ли элемент на экране. Использует кэширование для ускорения работы.
+ * @param element
+ */
+const isVisible = (element: Element) => {
+
+    const cached = cache.get(element);
+    const now = Date.now();
+    if (cached && now - cached.timestamp < CACHE_DURATION) {
+        return cached.result;
+    }
+
+    const rect = element.getBoundingClientRect();
+    const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    const result = !(rect.bottom < 0 || rect.top - viewHeight >= 0);
+    cache.set(element, { timestamp: now, result });
+
+    return result;
 };
 
 /**
@@ -28,10 +59,11 @@ export const slowInfiniteScroll = (
         direction,
         infinite = false,
         controls = false,
+
     }: {
         direction: 'right' | 'left';
         infinite: boolean;
-        controls: boolean;
+        controls?: boolean;
     }) => {
     const state = {
         direction,
@@ -43,7 +75,7 @@ export const slowInfiniteScroll = (
     }
 
     if (infinite) {
-        element.innerHTML = element.innerHTML.repeat(50);
+        element.innerHTML = element.innerHTML.repeat(REPEAT_COUNT);
     }
 
     const component = document.createElement('div');
@@ -79,6 +111,35 @@ export const slowInfiniteScroll = (
         component.appendChild(prevButton);
     }
 
+
+    // Устанавливаем максимальную позицию прокрутки
+    const maxScroll = element.scrollWidth - element.clientWidth;
+
+    // Двигаем на середину ленты.
+    element.scrollLeft = maxScroll/2;
+
+    const render = (scrollPosition: number, scrollDirection: typeof direction) => {
+        // Для оптимизации отрисовки не крутим, пока элемент не виден.
+        if (!isVisible(element)) {
+            return;
+        }
+        console.log('render');
+        if (scrollDirection === 'left') {
+            if (scrollPosition >= maxScroll - SCROLL_PADDING) {
+                element.scrollLeft = 0;
+            }
+            element.scrollLeft += SCROLL_SPEED;
+        }
+
+        if (scrollDirection === 'right') {
+            if (scrollPosition <= SCROLL_PADDING) {
+                element.scrollLeft = maxScroll;
+            }
+            element.scrollLeft -= SCROLL_SPEED;
+        }
+
+    };
+
     /**
      * Сдвигает элемент на SCROLL_SPEED.
      */
@@ -86,16 +147,10 @@ export const slowInfiniteScroll = (
         // Получаем текущую позицию прокрутки
         const scrollPosition = element.scrollLeft;
 
-        // Устанавливаем максимальную позицию прокрутки
-        const maxScroll = element.scrollWidth - element.clientWidth;
-
         // Проверяем направление и выполняем соответствующие действия
         if (state.direction === 'left') {
             // Прокручиваем влево
-            if (scrollPosition >= maxScroll) {
-                return;
-            }
-            element.scrollLeft += SCROLL_SPEED;
+            requestAnimationFrame(() => render(scrollPosition, 'left'));
             if (!state.isActive) {
                 return;
             }
@@ -103,10 +158,7 @@ export const slowInfiniteScroll = (
         }
         if (state.direction === 'right') {
             // Прокручиваем вправо
-            if (scrollPosition <= 0) {
-                return;
-            }
-            element.scrollLeft -= SCROLL_SPEED;
+            requestAnimationFrame(() => render(scrollPosition, 'right'));
             if (!state.isActive) {
                 return;
             }

@@ -15,6 +15,7 @@ import './components/block-tickets';
 import './components/ticket';
 import './components/block-reviews';
 import './components/block-partners';
+import './components/block-video';
 
 import { initList, TList } from './components/list';
 import { slowInfiniteScroll } from './components/horizontal-scroll';
@@ -136,4 +137,41 @@ import { slowInfiniteScroll } from './components/horizontal-scroll';
     }
 
     initList(partnersFaqBlock, partnersFaq, 1);
+})();
+
+(() => {
+    const scrollableTopVideos = document.querySelector('.block-video__top .block-video__cards');
+    if (!scrollableTopVideos) {
+        return;
+    }
+    if (!(scrollableTopVideos instanceof HTMLDivElement)) {
+        return;
+    }
+    const scrollController = slowInfiniteScroll(
+        scrollableTopVideos,
+        {
+            direction: 'left',
+            infinite: true,
+        }
+    );
+    scrollController.start();
+})();
+
+(() => {
+    const scrollableBottom = document.querySelector('.block-video__bottom .block-video__cards');
+    if (!scrollableBottom) {
+        return;
+    }
+    if (!(scrollableBottom instanceof HTMLDivElement)) {
+        return;
+    }
+    const scrollController = slowInfiniteScroll(
+        scrollableBottom,
+        {
+            direction: 'right',
+            infinite: true,
+        }
+    );
+
+    scrollController.start();
 })();
