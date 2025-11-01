@@ -13,6 +13,7 @@ import './components/block-cases';
 import './components/block-teachers';
 import './components/block-tickets';
 import './components/ticket';
+import './components/block-reviews';
 
 import { initList, TList } from './components/list';
 import { slowInfiniteScroll } from './components/horizontal-scroll';
@@ -70,6 +71,24 @@ const firstFAQ: TList = [
 
 (() => {
     const scrollableCases = document.querySelector('.block-teachers__cards');
+    if (!scrollableCases) {
+        return;
+    }
+    if (!(scrollableCases instanceof HTMLDivElement)) {
+        return;
+    }
+    slowInfiniteScroll(
+        scrollableCases,
+        {
+            direction: 'left',
+            infinite: true,
+            controls: true,
+        }
+    );
+})();
+
+(() => {
+    const scrollableCases = document.querySelector('.block-review__cards');
     if (!scrollableCases) {
         return;
     }

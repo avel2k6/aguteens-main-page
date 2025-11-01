@@ -1,0 +1,50 @@
+.block-review {
+  position: relative;
+
+  &__top {
+    display: flex;
+    max-width: 1024px;
+    justify-content: space-between;
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  &__bottom {
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  &__title {
+    margin-bottom: 60px;
+    color: #FFF;
+    font-family: HelveticaNeueCyr, sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 90%; /* 43.2px */
+  }
+
+  &__cards {
+    display: flex;
+    overflow: hidden;
+    flex-flow: row nowrap;
+    padding: 50px;
+    margin: -50px -100px;
+    gap: 10px;
+  }
+
+  &__card {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    min-width: 300px;
+    height: 300px;
+    border-radius: 30px;
+    background: lightgray 50% / cover no-repeat;
+    background-size: cover;
+  }
+}
