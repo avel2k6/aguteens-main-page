@@ -17,6 +17,7 @@ import './components/block-reviews';
 import './components/block-partners';
 import './components/block-video';
 import './components/footer';
+import './components/buy-button';
 
 import { initList, TList } from './components/list';
 import { slowInfiniteScroll } from './components/horizontal-scroll';
