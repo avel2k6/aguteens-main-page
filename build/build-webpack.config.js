@@ -8,7 +8,7 @@ module.exports = {
     mode: 'production',
     entry: './src/index.ts',
     output: {
-        path: path.resolve(__dirname, '..', './dist'),
+        path: path.resolve(__dirname, '..', './docs'),
         filename: 'build.js',
         library: {
             name: 'link-input',
