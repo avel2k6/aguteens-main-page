@@ -10,7 +10,7 @@ module.exports = {
     mode: 'production',
     entry: './src/index.ts',
     output: {
-        path: path.resolve(__dirname, '..', './docs'),
+        path: path.resolve(__dirname, '..', 'docs'),
         filename: 'build.js',
         library: {
             name: 'link-input',
@@ -49,13 +49,6 @@ module.exports = {
                     'less-loader',
                 ],
             },
-            {
-                test: /\.(png|svg|jpg|gif|otf|ttf)$/,
-                loader: 'file-loader',
-                options: {
-                    outputPath: 'dist',
-                },
-            },
         ],
     },
     plugins: [
@@ -73,11 +66,11 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'assets/index.html',
+            template: 'assets/main.html',
         }),
         new CopyPlugin({
             patterns: [
-                { from: path.resolve(__dirname, '..', 'assets','images'), to: path.resolve(__dirname, '..','docs','images')},
+                { from: path.resolve(__dirname, '..', 'assets'), to: path.resolve(__dirname, '..','docs')},
             ]
         }),
     ],

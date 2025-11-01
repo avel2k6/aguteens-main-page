@@ -305,19 +305,19 @@ template {
 
 @font-face {
   font-family: HelveticaNeueCyr;
-  src: local('HelveticaNeueCyr'), url(ebe19e98ce165b0407d9.otf) format('opentype');
+  src: local('HelveticaNeueCyr'), url(c0307693e561e43cb5c0.otf) format('opentype');
 }
 @font-face {
   font-family: HelveticaNeueCyr-Light;
-  src: local('HelveticaNeueCyr-Light'), url(fc390412c175f077c2c5.otf) format('opentype');
+  src: local('HelveticaNeueCyr-Light'), url(44ebfa09987841241499.otf) format('opentype');
 }
 @font-face {
   font-family: HelveticaNeueCyr-UltraLight;
-  src: local('HelveticaNeueCyr-UltraLight'), url(2c9c41f45d68f9e890bb.otf) format('opentype');
+  src: local('HelveticaNeueCyr-UltraLight'), url(ee85bd92152d792a8ec7.otf) format('opentype');
 }
 @font-face {
   font-family: Oswald;
-  src: local('Oswald'), url(02b74267e06679bfdce6.ttf) format('truetype');
+  src: local('Oswald'), url(3586ec851b78bbb713be.ttf) format('truetype');
 }
 
 html {
@@ -336,7 +336,7 @@ html {
   display: flex;
   height: 712px;
   align-items: flex-end;
-  background: linear-gradient(90deg, rgba(32, 32, 32, 0.4) 49.04%, rgba(32, 32, 32, 0) 100%), url(f39c6a464459a01be7d0.png) lightgray 50% / cover no-repeat;
+  background: linear-gradient(90deg, rgba(32, 32, 32, 0.4) 49.04%, rgba(32, 32, 32, 0) 100%), url(da905fb5aa48fa92471b.png) lightgray 50% / cover no-repeat;
 }
 .page__block_links {
   background: #DB1933;
@@ -345,7 +345,7 @@ html {
   /* Чтобы шум не убегал за границы блока */
   overflow: hidden;
   height: 344px;
-  background: url(3d5a12c84d3d0473547c.png) lightgray 50% / cover no-repeat;
+  background: url(b7530e08fa4937ef447a.png) lightgray 50% / cover no-repeat;
 }
 .page__block_cases {
   background: #78516C;
@@ -414,7 +414,7 @@ html {
   width: 200%;
   height: 200vh;
   animation: animation-noise 0.2s infinite;
-  background: transparent url(92e35304f5e922e17343.png) repeat 0 0;
+  background: transparent url(1690cd3defa001b4f87e.png) repeat 0 0;
   inset: -50%;
   opacity: 0.9;
   visibility: visible;
@@ -522,7 +522,7 @@ html {
   flex-grow: 1;
   border: 10px solid #202020;
   border-radius: 30px;
-  background: url(64847e74061e044550e8.png) lightgray 50% / cover no-repeat;
+  background: url(1b5bf75b97d8be546abe.png) lightgray 50% / cover no-repeat;
 }
 .block-offer__image__text {
   position: absolute;
@@ -576,7 +576,7 @@ html {
   height: 517.5px;
   flex: 1 0 0;
   border-radius: 30px 30px 0;
-  background: url(a86dfc8a41daba578ed5.png) lightgray 50% / cover no-repeat;
+  background: url(2dc88f31e04c4066ae21.png) lightgray 50% / cover no-repeat;
 }
 .block-faq__content {
   display: flex;
@@ -914,7 +914,7 @@ html {
   width: 257px;
   height: 90px;
   margin-bottom: 50px;
-  background: url(f696a6e65846bccc7d0b.svg);
+  background: url(8804640e60e95d7ad4bd.svg);
 }
 .block-partners__summary {
   display: block;
@@ -967,7 +967,7 @@ html {
   width: 20px;
   height: 20px;
   padding: 20px;
-  background-image: url(bf29dc07a9a80177faa0.svg);
+  background-image: url(7b3fde5007595c182aa0.svg);
   background-position: center;
   background-repeat: no-repeat;
   content: '';
@@ -1008,7 +1008,7 @@ html {
   width: 64px;
   height: 64px;
   padding: 20px;
-  background-image: url(bf29dc07a9a80177faa0.svg);
+  background-image: url(7b3fde5007595c182aa0.svg);
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.5;

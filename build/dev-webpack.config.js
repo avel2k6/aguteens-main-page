@@ -57,7 +57,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'assets/index.html',
+            template: 'assets/main.html',
         }),
     ],
 };
