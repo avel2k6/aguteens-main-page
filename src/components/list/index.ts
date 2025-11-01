@@ -85,18 +85,18 @@ export const initList = (
 
     const rerender = (): void => {
         Array
-            .from(document.getElementsByClassName(classes.answerOpened))
+            .from(element.getElementsByClassName(classes.answerOpened))
             .forEach((elem) => elem.classList.remove(classes.answerOpened));
 
         Array
-            .from(document.getElementsByClassName(classes.questionOpened))
+            .from(element.getElementsByClassName(classes.questionOpened))
             .forEach((elem) => elem.classList.remove(classes.questionOpened));
 
         if (state.openedIndex !== null) {
-            const question = document.querySelector(`.${classes.question}[${dataAttributes.index}='${state.openedIndex}']`);
+            const question = element.querySelector(`.${classes.question}[${dataAttributes.index}='${state.openedIndex}']`);
             question.classList.add(classes.questionOpened);
 
-            const answer = document.querySelector(`.${classes.answer}[${dataAttributes.index}='${state.openedIndex}']`);
+            const answer = element.querySelector(`.${classes.answer}[${dataAttributes.index}='${state.openedIndex}']`);
             answer.classList.add(classes.answerOpened);
         }
     };
