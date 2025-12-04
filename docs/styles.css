@@ -360,7 +360,7 @@ template {
 
 html {
   font-family: var(--font-main);
-  font-size: 1rem;
+  font-size: 15px;
 }
 
 .page {
