@@ -1436,7 +1436,7 @@ html {
   margin-bottom: 3.33333rem;
   background-image: url(8804640e60e95d7ad4bd.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 @media screen and (max-width: 767px) {
   .block-partners__logo {
@@ -1845,6 +1845,9 @@ html {
 }
 .horizontal-scroll__control:hover {
   opacity: 1;
+}
+.horizontal-scroll__control_hidden {
+  display: none;
 }
 .horizontal-scroll__control_right {
   right: 0;
