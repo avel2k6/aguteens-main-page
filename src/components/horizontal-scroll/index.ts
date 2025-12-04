@@ -240,8 +240,6 @@ export const initInfiniteScroll = (
             return;
         }
 
-        console.log('render');
-
         if (scrollDirection === 'left') {
             if (scrollPosition >= maxScroll - SCROLL_PADDING) {
                 element.scrollLeft = 0;
