@@ -78,4 +78,6 @@ export const initSpoiler = (
         content.classList.remove(classes.contentOpened);
         title.classList.remove(classes.titleOpened);
     };
+
+    rerender();
 };

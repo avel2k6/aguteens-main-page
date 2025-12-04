@@ -1,14 +1,29 @@
 import './index.less';
 
 /**
- * Скорость скролла в пикселях за один шаг.
+ * Скорость автоматического скролла в пикселях за один шаг.
  */
-const SCROLL_SPEED = 1;
+const DEFAULT_AUTO_SCROLL_SPEED = 2;
+
+/**
+ * Скорость скролла мышкой в пикселях за один шаг.
+ */
+const DEFAULT_MOUSE_SCROLL_SPEED = 6;
+
+/**
+ * Коэффициент ускорения/замедления
+ */
+const ACCELERATION = 0.1;
 
 /**
  * Задержка между шагами скролла в миллисекундах.
  */
-const SCROLL_DELAY = 20;
+const SCROLL_DELAY = 30;
+
+/**
+ * Задержка между шагами скролла в миллисекундах, если карусель неактивна.
+ */
+const SCROLL_IDLE_DELAY = 300;
 
 /**
  * Отступ от края контейнера до элемента при скролле в пикселях.
@@ -28,8 +43,9 @@ const CACHE_DURATION = 2000;
 const classes = {
     component: 'horizontal-scroll',
     cards: 'horizontal-scroll__cards',
-    control: 'horizontal-scroll__control',
     scrollable: 'horizontal-scroll__scrollable',
+    control: 'horizontal-scroll__control',
+    controlHidden: 'horizontal-scroll__control_hidden',
     controlLeft: 'horizontal-scroll__control_left',
     controlRight: 'horizontal-scroll__control_right',
 };
@@ -67,18 +83,37 @@ const isVisible = (element: Element) => {
  * @param direction - Направление прокрутки ('right' или 'left').
  * @param  [infinite=false] - Флаг, указывающий, нужно ли прокручивать бесконечно.
  * @param controls - Элементы управления прокруткой.
+ * @param autoScrollSpeed - Начальная скорость автоматического прокручивания.
+ * @param mouseScrollSpeed - Начальная скорость автоматического прокручивания.
+ * @param showControlsOnHover - Показывать ли элементы управления при наведении мышки.
  */
 export const initInfiniteScroll = (
     element: HTMLDivElement,
     {
         direction,
         infinite = false,
-        controls = false,
-
+        showControls = false,
+        autoScrollSpeed = DEFAULT_AUTO_SCROLL_SPEED,
+        mouseScrollSpeed = DEFAULT_MOUSE_SCROLL_SPEED,
+        showControlsOnHover = false,
     }: {
+        // Направление прокрутки.
         direction: 'right' | 'left';
+
+        // Бесконечный скролл.
         infinite: boolean;
-        controls?: boolean;
+
+        // Показывать кнопки управления или нет.
+        showControls?: boolean;
+
+        // Скорость автопрокручивания.
+        autoScrollSpeed?: number;
+
+        // Скорость при наведении мыши.
+        mouseScrollSpeed?: number;
+
+        // Признак, что надо показывать кнопки при наведении.
+        showControlsOnHover?: boolean;
     }) => {
 
     /**
@@ -88,8 +123,11 @@ export const initInfiniteScroll = (
         // Направление прокрутки.
         direction,
 
-        // Признак, что прокрутка работает.
-        isActive: false,
+        // Целевая скорость, с какой надо крутить.
+        targetSpeed: 0,
+
+        // Текущая скорость прокрутки. Будет стремиться к целевой.
+        currentSpeed: 0,
     };
 
     if (!(element instanceof HTMLDivElement)) {
@@ -106,33 +144,35 @@ export const initInfiniteScroll = (
     component.appendChild(element);
     element.classList.add(classes.cards);
 
-    if (controls) {
-        const prevButton = document.createElement('div');
-        prevButton.classList.add(classes.control, classes.controlLeft);
 
-        const nextButton = document.createElement('div');
-        nextButton.classList.add(classes.control, classes.controlRight);
+    const prevButton = document.createElement('div');
+    prevButton.classList.add(classes.control, classes.controlLeft);
 
-        element.appendChild(prevButton);
-        element.appendChild(nextButton);
-        prevButton.addEventListener('mouseenter', () => {
-            state.direction = 'right';
-            start();
-        });
-        prevButton.addEventListener('mouseleave', () => {
-            stop();
-        });
-        nextButton.addEventListener('mouseenter', () => {
-            state.direction = 'left';
-            start();
-        });
-        nextButton.addEventListener('mouseleave', () => {
-            stop();
-        });
+    const nextButton = document.createElement('div');
+    nextButton.classList.add(classes.control, classes.controlRight);
 
-        component.appendChild(nextButton);
-        component.appendChild(prevButton);
+    if (!showControls) {
+        prevButton.classList.add(classes.controlHidden);
+        nextButton.classList.add(classes.controlHidden);
     }
+
+    prevButton.addEventListener('mouseenter', () => {
+        state.direction = 'left';
+        state.targetSpeed = mouseScrollSpeed;
+    });
+    prevButton.addEventListener('mouseleave', () => {
+        state.targetSpeed = 0;
+    });
+    nextButton.addEventListener('mouseenter', () => {
+        state.direction = 'right';
+        state.targetSpeed = mouseScrollSpeed;
+    });
+    nextButton.addEventListener('mouseleave', () => {
+        state.targetSpeed = 0;
+    });
+
+    component.appendChild(nextButton);
+    component.appendChild(prevButton);
 
 
     // Устанавливаем максимальную позицию прокрутки
@@ -141,70 +181,138 @@ export const initInfiniteScroll = (
     // Двигаем на середину ленты.
     element.scrollLeft = maxScroll/2;
 
-    const render = (scrollPosition: number, scrollDirection: typeof direction) => {
+    const handleShowControls = () => {
+        Array.from(component.getElementsByClassName(classes.control)).forEach((controlElement) => {
+            controlElement.classList.remove(classes.controlHidden);
+        });
+        state.targetSpeed = 0;
+    };
+
+    const handleHideControls = () => {
+        Array.from(component.getElementsByClassName(classes.control)).forEach((controlElement) => {
+            controlElement.classList.add(classes.controlHidden);
+        });
+
+        state.direction = direction;
+        state.targetSpeed = autoScrollSpeed;
+    };
+
+    if (showControlsOnHover) {
+        component.addEventListener('mouseenter', handleShowControls );
+        component.addEventListener('mouseleave', handleHideControls );
+        component.addEventListener('pointerenter', handleShowControls );
+        component.addEventListener('pointerleave', handleHideControls );
+    }
+
+
+    /**
+     * Приближает текущую скорость к целевой.
+     */
+    const updateSpeed = () => {
+
+        if (state.currentSpeed === state.targetSpeed) {
+            return;
+        }
+
+        if (Math.abs(state.currentSpeed - state.targetSpeed) < ACCELERATION) {
+            state.currentSpeed = state.targetSpeed;
+        }
+
+        if (state.currentSpeed < state.targetSpeed) {
+            state.currentSpeed += ACCELERATION;
+            return;
+        }
+
+        if (state.currentSpeed > state.targetSpeed) {
+            state.currentSpeed -= ACCELERATION;
+            return;
+        }
+    };
+
+    /**
+     * Отрисовка сдвига карусели.
+     * @param scrollPosition
+     * @param scrollDirection
+     */
+    const renderScroll = (scrollPosition: number, scrollDirection: typeof direction) => {
         // Для оптимизации отрисовки не крутим, пока элемент не виден.
         if (!isVisible(element)) {
             return;
         }
 
+        console.log('render');
+
         if (scrollDirection === 'left') {
             if (scrollPosition >= maxScroll - SCROLL_PADDING) {
                 element.scrollLeft = 0;
             }
-            element.scrollLeft += SCROLL_SPEED;
+            element.scrollLeft += state.currentSpeed;
         }
 
         if (scrollDirection === 'right') {
             if (scrollPosition <= SCROLL_PADDING) {
                 element.scrollLeft = maxScroll;
             }
-            element.scrollLeft -= SCROLL_SPEED;
+            element.scrollLeft -= state.currentSpeed;
         }
-
     };
 
+
     /**
-     * Сдвигает элемент на SCROLL_SPEED.
+     * Запускаем таймеры карусели, которые следят за скроллом.
      */
     const scroll = () => {
         // Получаем текущую позицию прокрутки
         const scrollPosition = element.scrollLeft;
 
-        // Проверяем направление и выполняем соответствующие действия
+        updateSpeed();
+
+        //  Прокручиваем влево
         if (state.direction === 'left') {
-            // Прокручиваем влево
-            requestAnimationFrame(() => render(scrollPosition, 'left'));
-            if (!state.isActive) {
-                return;
-            }
-            setTimeout(() => scroll(), SCROLL_DELAY);
+            requestAnimationFrame(() => renderScroll(scrollPosition, 'left'));
         }
+
+        // Прокручиваем вправо
         if (state.direction === 'right') {
-            // Прокручиваем вправо
-            requestAnimationFrame(() => render(scrollPosition, 'right'));
-            if (!state.isActive) {
-                return;
-            }
-            setTimeout(() => scroll(), SCROLL_DELAY);
+            requestAnimationFrame(() => renderScroll(scrollPosition, 'right'));
         }
+
+        // Задержка опроса для оптимизации. Если карусель стоит, ее не надо часто опрашивать и перерисовывать.
+        const delay = state.currentSpeed === 0 || !isVisible(element)
+            ? SCROLL_IDLE_DELAY
+            : SCROLL_DELAY;
+
+        setTimeout(
+            () => scroll(),
+            delay,
+        );
     };
 
+    scroll();
+
+    // Запуск карусели.
     const start = () => {
-        state.isActive = true;
-        scroll();
+        state.targetSpeed = autoScrollSpeed;
     };
 
+    // Остановка карусели.
     const stop = () => {
-        state.isActive = false;
+        state.targetSpeed = 0;
     };
 
+    // Смена направления карусели.
     const changeDirection = (newDirection: typeof direction) => {
         state.direction = newDirection;
     };
 
     return {
+        // Публичный метод запуска карусели.
         start,
+
+        // Публичный метод остановки карусели.
         stop,
+
+        // Публичный метод смены направления карусели.
         changeDirection,
     };
 };

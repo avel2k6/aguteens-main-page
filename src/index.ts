@@ -73,7 +73,7 @@ import { initSpoiler } from './components/spoiler';
         {
             direction: 'left',
             infinite: true,
-            controls: true,
+            showControls: true,
         }
     );
 })();
@@ -91,7 +91,7 @@ import { initSpoiler } from './components/spoiler';
         {
             direction: 'left',
             infinite: true,
-            controls: true,
+            showControls: true,
         }
     );
 })();
@@ -109,7 +109,7 @@ import { initSpoiler } from './components/spoiler';
         {
             direction: 'left',
             infinite: true,
-            controls: true,
+            showControls: true,
         }
     );
 })();
@@ -140,6 +140,8 @@ import { initSpoiler } from './components/spoiler';
         {
             direction: 'left',
             infinite: true,
+            showControls: false,
+            showControlsOnHover: true,
         }
     );
     scrollController.start();
@@ -158,6 +160,8 @@ import { initSpoiler } from './components/spoiler';
         {
             direction: 'right',
             infinite: true,
+            showControls: false,
+            showControlsOnHover: true,
         }
     );
 

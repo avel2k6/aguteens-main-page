@@ -17,5 +17,8 @@ module.exports = {
 
         functions.add('calcPercent', (sizeInPx) => less
             .dimension((sizeInPx.value * (100 / BASE_FONT_SIZE)).toFixed(0), '%'));
+
+        functions.add('calcVW', (sizeInPx) => less
+            .dimension((sizeInPx.value / 12.8).toFixed(5), 'vw'));
     },
 };
