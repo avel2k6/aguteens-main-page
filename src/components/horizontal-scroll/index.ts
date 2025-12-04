@@ -1,14 +1,19 @@
 import './index.less';
 
 /**
- * Скорость скролла в пикселях за один шаг.
+ * Максимальная скорость скролла в пикселях за один шаг.
  */
-const SCROLL_SPEED = 1;
+const MAX_SCROLL_SPEED = 10;
 
 /**
  * Задержка между шагами скролла в миллисекундах.
  */
 const SCROLL_DELAY = 20;
+
+/**
+ * Коэффициент ускорения/замедления
+ */
+const ACCELERATION = 0.3;
 
 /**
  * Отступ от края контейнера до элемента при скролле в пикселях.
@@ -74,12 +79,20 @@ export const initInfiniteScroll = (
         direction,
         infinite = false,
         controls = false,
-
+        autoSpeed,
+        controlsOnHover,
     }: {
         direction: 'right' | 'left';
         infinite: boolean;
         controls?: boolean;
+        autoSpeed?: number;
+        controlsOnHover?: boolean;
     }) => {
+    const instanceAutoSpeed = typeof autoSpeed === 'number' ? autoSpeed : MAX_SCROLL_SPEED;
+    // remember the initially configured direction and auto speed so
+    // startAuto() (called without args) can restore original behavior
+    const defaultDirection = direction;
+    const defaultAutoSpeed = instanceAutoSpeed;
 
     /**
      * Состояние компонента.
@@ -90,6 +103,12 @@ export const initInfiniteScroll = (
 
         // Признак, что прокрутка работает.
         isActive: false,
+
+        // Текущая скорость прокрутки
+        currentSpeed: 0,
+
+        // Целевая скорость прокрутки
+        targetSpeed: 0,
     };
 
     if (!(element instanceof HTMLDivElement)) {
@@ -102,38 +121,13 @@ export const initInfiniteScroll = (
 
     const component = document.createElement('div');
     component.classList.add(classes.component);
+    // if caller requested controls visible only while hovered, add modifier
+    if (controlsOnHover) {
+        component.classList.add('horizontal-scroll_auto-hide-controls');
+    }
     element.parentElement.appendChild(component);
     component.appendChild(element);
     element.classList.add(classes.cards);
-
-    if (controls) {
-        const prevButton = document.createElement('div');
-        prevButton.classList.add(classes.control, classes.controlLeft);
-
-        const nextButton = document.createElement('div');
-        nextButton.classList.add(classes.control, classes.controlRight);
-
-        element.appendChild(prevButton);
-        element.appendChild(nextButton);
-        prevButton.addEventListener('mouseenter', () => {
-            state.direction = 'right';
-            start();
-        });
-        prevButton.addEventListener('mouseleave', () => {
-            stop();
-        });
-        nextButton.addEventListener('mouseenter', () => {
-            state.direction = 'left';
-            start();
-        });
-        nextButton.addEventListener('mouseleave', () => {
-            stop();
-        });
-
-        component.appendChild(nextButton);
-        component.appendChild(prevButton);
-    }
-
 
     // Устанавливаем максимальную позицию прокрутки
     const maxScroll = element.scrollWidth - element.clientWidth;
@@ -141,9 +135,31 @@ export const initInfiniteScroll = (
     // Двигаем на середину ленты.
     element.scrollLeft = maxScroll/2;
 
+    /**
+     * Плавно изменяет текущую скорость к целевой
+     */
+    const updateSpeed = () => {
+        if (Math.abs(state.currentSpeed - state.targetSpeed) < ACCELERATION) {
+            state.currentSpeed = state.targetSpeed;
+        } else if (state.currentSpeed < state.targetSpeed) {
+            state.currentSpeed += ACCELERATION;
+        } else {
+            state.currentSpeed -= ACCELERATION;
+        }
+    };
+
     const render = (scrollPosition: number, scrollDirection: typeof direction) => {
         // Для оптимизации отрисовки не крутим, пока элемент не виден.
         if (!isVisible(element)) {
+            return;
+        }
+
+        // Обновляем скорость плавно
+        updateSpeed();
+
+        // Если скорость очень мала, останавливаем
+        if (Math.abs(state.currentSpeed) < ACCELERATION && !state.isActive) {
+            state.currentSpeed = 0;
             return;
         }
 
@@ -151,60 +167,96 @@ export const initInfiniteScroll = (
             if (scrollPosition >= maxScroll - SCROLL_PADDING) {
                 element.scrollLeft = 0;
             }
-            element.scrollLeft += SCROLL_SPEED;
+            element.scrollLeft += state.currentSpeed;
         }
 
         if (scrollDirection === 'right') {
             if (scrollPosition <= SCROLL_PADDING) {
                 element.scrollLeft = maxScroll;
             }
-            element.scrollLeft -= SCROLL_SPEED;
+            element.scrollLeft -= state.currentSpeed;
         }
-
     };
 
     /**
-     * Сдвигает элемент на SCROLL_SPEED.
+     * Сдвигает элемент с плавной скоростью.
      */
     const scroll = () => {
         // Получаем текущую позицию прокрутки
         const scrollPosition = element.scrollLeft;
 
         // Проверяем направление и выполняем соответствующие действия
-        if (state.direction === 'left') {
-            // Прокручиваем влево
-            requestAnimationFrame(() => render(scrollPosition, 'left'));
-            if (!state.isActive) {
-                return;
+        if (state.direction === 'left' || state.direction === 'right') {
+            requestAnimationFrame(() => render(scrollPosition, state.direction));
+
+            if (state.isActive || Math.abs(state.currentSpeed) > ACCELERATION) {
+                setTimeout(() => scroll(), SCROLL_DELAY);
             }
-            setTimeout(() => scroll(), SCROLL_DELAY);
-        }
-        if (state.direction === 'right') {
-            // Прокручиваем вправо
-            requestAnimationFrame(() => render(scrollPosition, 'right'));
-            if (!state.isActive) {
-                return;
-            }
-            setTimeout(() => scroll(), SCROLL_DELAY);
         }
     };
 
-    const start = () => {
-        state.isActive = true;
-        scroll();
+    const startManual = (scrollDirection: typeof direction) => {
+        state.direction = scrollDirection;
+        state.targetSpeed = MAX_SCROLL_SPEED;
+        if (!state.isActive) {
+            state.isActive = true;
+            scroll();
+        }
+    };
+
+    const startAuto = (scrollDirection?: typeof direction, speed?: number) => {
+        // if caller provided a direction, use it; otherwise restore default
+        state.direction = typeof scrollDirection === 'string' ? scrollDirection : defaultDirection;
+        // if caller provided a speed override, use it; otherwise restore default auto speed
+        state.targetSpeed = typeof speed === 'number' ? speed : defaultAutoSpeed;
+        if (!state.isActive) {
+            state.isActive = true;
+            scroll();
+        }
     };
 
     const stop = () => {
-        state.isActive = false;
+        state.targetSpeed = 0;
+        // Не устанавливаем isActive в false сразу, чтобы дать возможность плавно остановиться
+        // isActive установится в false автоматически когда скорость станет близкой к 0
     };
 
     const changeDirection = (newDirection: typeof direction) => {
         state.direction = newDirection;
     };
 
+    // Обработчики для контролов
+    if (controls) {
+        const prevButton = document.createElement('button');
+        prevButton.type = 'button';
+        prevButton.classList.add(classes.control, classes.controlLeft);
+        prevButton.setAttribute('aria-label', 'previous');
+        const nextButton = document.createElement('button');
+        nextButton.type = 'button';
+        nextButton.classList.add(classes.control, classes.controlRight);
+        nextButton.setAttribute('aria-label', 'next');
+        component.appendChild(prevButton);
+        component.appendChild(nextButton);
+
+        prevButton.addEventListener('mouseenter', () => {
+            startManual('right');
+        });
+        prevButton.addEventListener('mouseleave', () => {
+            stop();
+        });
+        nextButton.addEventListener('mouseenter', () => {
+            startManual('left');
+        });
+        nextButton.addEventListener('mouseleave', () => {
+            stop();
+        });
+    }
+
     return {
-        start,
+        start: () => startManual(state.direction),
+        startAuto,
         stop,
         changeDirection,
+        wrapper: component,
     };
 };

@@ -15,15 +15,26 @@
   &__control {
     position: absolute;
     z-index: 100;
-    top: calc(50% - calcrem(64));
+    top: calc(50% - calcrem(62));
     width: calcrem(64);
     height: calcrem(64);
-    padding: calcrem(20);
+    padding: calcrem(60) calcrem(120);
     background-image: url("../../icons/down.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: calcrem(64);
     opacity: 0.5;
+    transition: opacity 0.18s ease;
+    // reset native button appearance so controls don't show borders/fill
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    background-color: transparent;
+    line-height: 0;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 
     .mobile-screen({
       display: none;
@@ -33,14 +44,45 @@
       opacity: 1;
     }
 
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
     &_right {
-      right: 0;
+      right: calcrem(-120);
       transform: rotate(-90deg);
     }
 
     &_left {
-      left: 0;
+      left: calcrem(-120);
       transform: rotate(90deg);
     }
   }
+
+  // Instances with this modifier hide controls until wrapper hovered (or when JS toggles .horizontal-scroll_hover)
+  &.horizontal-scroll_auto-hide-controls {
+    &__control {
+      display: none;       /* hide entirely when not hovered */
+      pointer-events: none;
+    }
+
+    /* show when wrapper hovered or when JS toggles the hover class */
+    &.horizontal-scroll_hover,
+    &:hover {
+      &__control {
+        display: block;
+        pointer-events: auto;
+      }
+    }
+  }
 }
+  /* Overrides for video blocks: different left/right control positions */
+  .block-video__top .horizontal-scroll .horizontal-scroll__control_right, 
+  .block-video__bottom .horizontal-scroll .horizontal-scroll__control_right {
+    right: calcrem(5) !important; /* adjust as needed */
+  }
+  .block-video__top .horizontal-scroll .horizontal-scroll__control_left,
+  .block-video__bottom .horizontal-scroll .horizontal-scroll__control_left {
+    left: calcrem(5) !important; /* adjust as needed */
+  }

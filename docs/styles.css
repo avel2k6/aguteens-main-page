@@ -21,7 +21,7 @@
   --font-size-xxxl: 2.13333rem;
   --font-size-xxxxl: 3.2rem;
   --font-size-xxxxxl: 4.8rem;
-  --font-size-xxxxxxl: 6.13333rem;
+  --font-size-xxxxxxl: 7.65625vw;
   --border-radius-default: 2rem;
   --border-radius-large: 4.66667rem;
   --mobile-break-point: 768px;
@@ -1436,7 +1436,7 @@ html {
   margin-bottom: 3.33333rem;
   background-image: url(8804640e60e95d7ad4bd.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 @media screen and (max-width: 767px) {
   .block-partners__logo {
@@ -1828,10 +1828,10 @@ html {
 .horizontal-scroll__control {
   position: absolute;
   z-index: 100;
-  top: calc(50% - 4.26667rem);
+  top: calc(50% - 6.13333rem);
   width: 4.26667rem;
   height: 4.26667rem;
-  padding: 1.33333rem;
+  padding: 4rem 8rem;
   background-image: url(7b3fde5007595c182aa0.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -1847,11 +1847,11 @@ html {
   opacity: 1;
 }
 .horizontal-scroll__control_right {
-  right: 0;
+  right: -12rem;
   transform: rotate(-90deg);
 }
 .horizontal-scroll__control_left {
-  left: 0;
+  left: -12rem;
   transform: rotate(90deg);
 }
 

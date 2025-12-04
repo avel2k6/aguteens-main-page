@@ -140,9 +140,41 @@ import { initSpoiler } from './components/spoiler';
         {
             direction: 'left',
             infinite: true,
+            controls: true,
+            autoSpeed: 2, // <-- set desired automatic speed for top (pixels per step)
+            controlsOnHover: true, // show controls only while wrapper is hovered
         }
     );
-    scrollController.start();
+    scrollController.startAuto();
+    // pause auto-rotation on hover, resume on leave
+    const topWrapper = (scrollController as any)?.wrapper as HTMLElement | undefined;
+    if (topWrapper) {
+        // prefer the inner cards element as target, fallback to wrapper
+        const topCards = topWrapper.querySelector<HTMLElement>('.horizontal-scroll__cards') || topWrapper;
+
+        const showTopControls = () => {
+            const controls = topWrapper.querySelectorAll<HTMLElement>('.horizontal-scroll__control');
+            controls.forEach(c => c.style.display = 'block');
+            scrollController.stop();
+            topWrapper.classList.add('horizontal-scroll_hover');
+        };
+        const hideTopControls = (ev?: MouseEvent | PointerEvent) => {
+            const related = (ev as any)?.relatedTarget as Node | null;
+            if (related && topWrapper.contains(related)) return;
+            const controls = topWrapper.querySelectorAll<HTMLElement>('.horizontal-scroll__control');
+            controls.forEach(c => c.style.display = 'none');
+            scrollController.startAuto();
+            topWrapper.classList.remove('horizontal-scroll_hover');
+        };
+
+        // attach to both wrapper and the inner cards to be robust
+        [topWrapper, topCards].forEach(el => {
+            el.addEventListener('pointerenter', showTopControls);
+            el.addEventListener('pointerleave', hideTopControls);
+            el.addEventListener('mouseenter', showTopControls);
+            el.addEventListener('mouseleave', hideTopControls);
+        });
+    }
 })();
 
 (() => {
@@ -158,8 +190,38 @@ import { initSpoiler } from './components/spoiler';
         {
             direction: 'right',
             infinite: true,
+            controls: true,
+            autoSpeed: 2, // <-- set desired automatic speed for bottom
+            controlsOnHover: true, // same for bottom
         }
     );
 
-    scrollController.start();
+    scrollController.startAuto();
+    // pause auto-rotation on hover, resume on leave
+    const bottomWrapper = (scrollController as any)?.wrapper as HTMLElement | undefined;
+    if (bottomWrapper) {
+        const bottomCards = bottomWrapper.querySelector<HTMLElement>('.horizontal-scroll__cards') || bottomWrapper;
+
+        const showBottomControls = () => {
+            const controls = bottomWrapper.querySelectorAll<HTMLElement>('.horizontal-scroll__control');
+            controls.forEach(c => c.style.display = 'block');
+            scrollController.stop();
+            bottomWrapper.classList.add('horizontal-scroll_hover');
+        };
+        const hideBottomControls = (ev?: MouseEvent | PointerEvent) => {
+            const related = (ev as any)?.relatedTarget as Node | null;
+            if (related && bottomWrapper.contains(related)) return;
+            const controls = bottomWrapper.querySelectorAll<HTMLElement>('.horizontal-scroll__control');
+            controls.forEach(c => c.style.display = 'none');
+            scrollController.startAuto();
+            bottomWrapper.classList.remove('horizontal-scroll_hover');
+        };
+
+        [bottomWrapper, bottomCards].forEach(el => {
+            el.addEventListener('pointerenter', showBottomControls);
+            el.addEventListener('pointerleave', hideBottomControls);
+            el.addEventListener('mouseenter', showBottomControls);
+            el.addEventListener('mouseleave', hideBottomControls);
+        });
+    }
 })();
