@@ -1687,14 +1687,20 @@ html {
 }
 @media screen and (max-width: 1023px) {
   .bg-video {
-    top: -56vh;
+    top: 0;
+    width: 110%;
+    left: -5%;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 }
 @media screen and (max-width: 767px) {
   .bg-video {
-    height: 200%;
-    top: -30%;
-    bottom: -30%;
+    top: 0;
+    width: 100%;
+    left: 5%;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 }
 
