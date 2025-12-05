@@ -13,7 +13,7 @@ const DEFAULT_MOUSE_SCROLL_SPEED = 6;
 /**
  * Коэффициент ускорения/замедления
  */
-const ACCELERATION = 0.1;
+const ACCELERATION = 0.05;
 
 /**
  * Задержка между шагами скролла в миллисекундах.
@@ -23,7 +23,7 @@ const SCROLL_DELAY = 30;
 /**
  * Задержка между шагами скролла в миллисекундах, если карусель неактивна.
  */
-const SCROLL_IDLE_DELAY = 300;
+const SCROLL_IDLE_DELAY = 500;
 
 /**
  * Задержка между началом автоскролла на тач девайсах.
@@ -146,6 +146,12 @@ export const initInfiniteScroll = (
 
         // Текущая скорость прокрутки. Будет стремиться к целевой.
         currentSpeed: 0,
+
+        // Признак, что компонент активен и занимается расчетами скролла.
+        isActive: autoScroll,
+
+        // Признак мобильно устройства.
+        isTouch: isTouchDevice(),
     };
 
     if (!(scrollableElement instanceof HTMLDivElement)) {
@@ -156,8 +162,6 @@ export const initInfiniteScroll = (
         scrollableElement.innerHTML = scrollableElement.innerHTML.repeat(REPEAT_COUNT);
     }
 
-    // Признак, что перед нами тач девайс.
-    const isTouch = isTouchDevice();
 
     const component = document.createElement('div');
     component.classList.add(classes.component);
@@ -165,7 +169,7 @@ export const initInfiniteScroll = (
     component.appendChild(scrollableElement);
     scrollableElement.classList.add(classes.cards);
 
-    if (isTouch) {
+    if (state.isTouch) {
         scrollableElement.classList.add(classes.scrollable);
     }
 
@@ -176,7 +180,7 @@ export const initInfiniteScroll = (
     const nextButton = document.createElement('div');
     nextButton.classList.add(classes.control, classes.controlRight);
 
-    if (!showControls || isTouch) {
+    if (!showControls || state.isTouch) {
         prevButton.classList.add(classes.controlHidden);
         nextButton.classList.add(classes.controlHidden);
     }
@@ -184,16 +188,28 @@ export const initInfiniteScroll = (
     prevButton.addEventListener('mouseenter', () => {
         state.direction = 'left';
         state.targetSpeed = mouseScrollSpeed;
+        state.isActive = true;
+        scroll();
     });
     prevButton.addEventListener('mouseleave', () => {
-        state.targetSpeed = 0;
+        state.targetSpeed = autoScroll ? autoScrollSpeed : 0;
+        state.isActive = autoScroll;
+        if (!autoScroll) {
+            state.currentSpeed = 0;
+        }
     });
     nextButton.addEventListener('mouseenter', () => {
         state.direction = 'right';
         state.targetSpeed = mouseScrollSpeed;
+        state.isActive = true;
+        scroll();
     });
     nextButton.addEventListener('mouseleave', () => {
-        state.targetSpeed = 0;
+        state.targetSpeed = autoScroll ? autoScrollSpeed : 0;
+        state.isActive = autoScroll;
+        if (!autoScroll) {
+            state.currentSpeed = 0;
+        }
     });
 
     component.appendChild(nextButton);
@@ -237,6 +253,7 @@ export const initInfiniteScroll = (
      */
     const handleStopTouch = () => {
         state.targetSpeed = 0;
+        state.isActive = false;
 
         if (touchTimer) {
             clearTimeout(touchTimer);
@@ -247,7 +264,11 @@ export const initInfiniteScroll = (
         }
 
         touchTimer = setTimeout(
-            () => { state.targetSpeed = autoScrollSpeed; },
+            () => {
+                state.targetSpeed = autoScrollSpeed;
+                state.isActive = true;
+                scroll();
+            },
             TOUTCH_AUTOSCROLL_DELAY
         );
     };
@@ -255,7 +276,7 @@ export const initInfiniteScroll = (
 
     component.addEventListener('touchmove', handleStopTouch);
 
-    if (showControlsOnHover && !isTouch) {
+    if (showControlsOnHover && !state.isTouch) {
         component.addEventListener('mouseenter', handleShowControls );
         component.addEventListener('mouseleave', handleHideControls );
     }
@@ -265,7 +286,6 @@ export const initInfiniteScroll = (
      * Приближает текущую скорость к целевой.
      */
     const updateSpeed = () => {
-
         if (state.currentSpeed === state.targetSpeed) {
             return;
         }
@@ -311,11 +331,19 @@ export const initInfiniteScroll = (
         }
     };
 
+    // Таймер запуска автоскролла.
+    let scrollTimer: ReturnType<typeof setTimeout> = null;
 
     /**
      * Запускаем таймеры карусели, которые следят за скроллом.
      */
     const scroll = () => {
+        if (!state.isActive) {
+            return;
+        }
+
+        console.log('scroll');
+
         // Получаем текущую позицию прокрутки
         const scrollPosition = scrollableElement.scrollLeft;
 
@@ -336,11 +364,15 @@ export const initInfiniteScroll = (
             ? SCROLL_IDLE_DELAY
             : SCROLL_DELAY;
 
-        setTimeout(
-            () => scroll(),
+        clearTimeout(scrollTimer);
+
+        scrollTimer = setTimeout(
+            () => {scroll();},
             delay,
         );
     };
 
-    scroll();
+    if (autoScroll) {
+        scroll();
+    }
 };
