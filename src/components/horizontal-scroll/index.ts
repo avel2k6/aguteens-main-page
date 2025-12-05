@@ -342,8 +342,6 @@ export const initInfiniteScroll = (
             return;
         }
 
-        console.log('scroll');
-
         // Получаем текущую позицию прокрутки
         const scrollPosition = scrollableElement.scrollLeft;
 
