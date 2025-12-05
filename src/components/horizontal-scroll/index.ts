@@ -324,16 +324,25 @@ export const initInfiniteScroll = (
 
         if (scrollDirection === 'left') {
             if (scrollPosition >= maxScroll - SCROLL_PADDING) {
-                scrollableElement.scrollLeft = 0;
+                scrollableElement.scrollTo({
+                    left: 0,
+                });
             }
-            scrollableElement.scrollLeft += state.currentSpeed;
+            scrollableElement.scrollTo({
+                left: scrollPosition + state.currentSpeed,
+            });
         }
 
         if (scrollDirection === 'right') {
             if (scrollPosition <= SCROLL_PADDING) {
-                scrollableElement.scrollLeft = maxScroll;
+                scrollableElement.scrollTo({
+                    left: maxScroll,
+                });
             }
-            scrollableElement.scrollLeft -= state.currentSpeed;
+
+            scrollableElement.scrollTo({
+                left: scrollPosition - state.currentSpeed,
+            });
         }
     };
 
