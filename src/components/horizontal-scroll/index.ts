@@ -222,7 +222,9 @@ export const initInfiniteScroll = (
     const maxScroll = scrollableElement.scrollWidth - scrollableElement.clientWidth;
 
     // Двигаем на середину ленты.
-    scrollableElement.scrollLeft = maxScroll/2;
+    scrollableElement.scrollTo({
+        left: maxScroll/2,
+    });
 
     /**
      * Обработчик, который показывает кнопки управления.
