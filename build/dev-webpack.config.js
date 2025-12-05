@@ -65,6 +65,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
+            inject: 'body',
             template: 'assets/main.html',
         }),
     ],
