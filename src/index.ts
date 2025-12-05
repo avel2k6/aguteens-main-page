@@ -112,6 +112,7 @@ import { initSpoiler } from './components/spoiler';
             showControls: true,
         }
     );
+
 })();
 
 (() => {
@@ -135,16 +136,16 @@ import { initSpoiler } from './components/spoiler';
     if (!(scrollableTopVideos instanceof HTMLDivElement)) {
         return;
     }
-    const scrollController = initInfiniteScroll(
+    initInfiniteScroll(
         scrollableTopVideos,
         {
             direction: 'left',
             infinite: true,
             showControls: false,
             showControlsOnHover: true,
+            autoScroll: true,
         }
     );
-    scrollController.start();
 })();
 
 (() => {
@@ -155,15 +156,14 @@ import { initSpoiler } from './components/spoiler';
     if (!(scrollableBottom instanceof HTMLDivElement)) {
         return;
     }
-    const scrollController = initInfiniteScroll(
+    initInfiniteScroll(
         scrollableBottom,
         {
             direction: 'right',
             infinite: true,
             showControls: false,
             showControlsOnHover: true,
+            autoScroll: true,
         }
     );
-
-    scrollController.start();
 })();

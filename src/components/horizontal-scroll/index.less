@@ -7,6 +7,10 @@
     padding: calcrem(50);
     margin:  calcrem(-50)  calcrem(-100);
 
+    &_scrollable {
+      overflow-x: scroll;
+    }
+
     .mobile-screen({
       margin:  calcrem(-50)  calcrem(-30);
     });
@@ -24,10 +28,6 @@
     background-repeat: no-repeat;
     background-size: calcrem(64);
     opacity: 0.5;
-
-    .mobile-screen({
-      display: none;
-    });
 
     &:hover {
       opacity: 1;

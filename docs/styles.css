@@ -916,12 +916,6 @@ html {
   flex-flow: row nowrap;
   gap: 1.33333rem;
 }
-@media screen and (max-width: 767px) {
-  .block-cases__cards {
-    gap: 0.66667rem;
-    overflow-x: scroll;
-  }
-}
 .block-cases__card {
   position: relative;
   overflow: hidden;
@@ -1081,11 +1075,6 @@ html {
   overflow: hidden;
   flex-flow: row nowrap;
   gap: 0.66667rem;
-}
-@media screen and (max-width: 767px) {
-  .block-teachers__cards {
-    overflow-x: scroll;
-  }
 }
 .block-teachers__card {
   z-index: 1;
@@ -1387,11 +1376,6 @@ html {
   overflow: hidden;
   flex-flow: row nowrap;
   gap: 0.66667rem;
-}
-@media screen and (max-width: 767px) {
-  .block-review__cards {
-    overflow-x: scroll;
-  }
 }
 .block-review__card {
   position: relative;
@@ -1820,6 +1804,9 @@ html {
   padding: 3.33333rem;
   margin: -3.33333rem -6.66667rem;
 }
+.horizontal-scroll__cards_scrollable {
+  overflow-x: scroll;
+}
 @media screen and (max-width: 767px) {
   .horizontal-scroll__cards {
     margin: -3.33333rem -2rem;
@@ -1837,11 +1824,6 @@ html {
   background-repeat: no-repeat;
   background-size: 4.26667rem;
   opacity: 0.5;
-}
-@media screen and (max-width: 767px) {
-  .horizontal-scroll__control {
-    display: none;
-  }
 }
 .horizontal-scroll__control:hover {
   opacity: 1;
