@@ -193,7 +193,8 @@ export const initInfiniteScroll = (
     });
     prevButton.addEventListener('mouseleave', () => {
         state.targetSpeed = autoScroll ? autoScrollSpeed : 0;
-        state.isActive = autoScroll;
+        state.isActive = false;
+        state.direction = direction;
         if (!autoScroll) {
             state.currentSpeed = 0;
         }
@@ -206,7 +207,8 @@ export const initInfiniteScroll = (
     });
     nextButton.addEventListener('mouseleave', () => {
         state.targetSpeed = autoScroll ? autoScrollSpeed : 0;
-        state.isActive = autoScroll;
+        state.isActive = false;
+        state.direction = direction;
         if (!autoScroll) {
             state.currentSpeed = 0;
         }
@@ -241,7 +243,9 @@ export const initInfiniteScroll = (
         });
 
         state.direction = direction;
+        state.isActive = true;
         state.targetSpeed = autoScrollSpeed;
+        scroll();
     };
 
     // Таймер запуска автоскролла.
