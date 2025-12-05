@@ -28,17 +28,17 @@ const SCROLL_IDLE_DELAY = 500;
 /**
  * Задержка между началом автоскролла на тач девайсах.
  */
-const TOUTCH_AUTOSCROLL_DELAY = 10000;
+const TOUCH_AUTOSCROLL_DELAY = 10000;
 
 /**
  * Отступ от края контейнера до элемента при скролле в пикселях.
  */
-const SCROLL_PADDING = 10;
+const SCROLL_PADDING = 50;
 
 /**
  * Количество повторов контента внутри блока прокрутки. Нужно для создания эффекта непрерывности.
  */
-const REPEAT_COUNT = 10;
+const REPEAT_COUNT = 3;
 
 /**
  * Время жизни кэша в миллисекундах.
@@ -275,7 +275,7 @@ export const initInfiniteScroll = (
                 state.isActive = true;
                 scroll();
             },
-            TOUTCH_AUTOSCROLL_DELAY
+            TOUCH_AUTOSCROLL_DELAY
         );
     };
 
@@ -327,10 +327,12 @@ export const initInfiniteScroll = (
                 scrollableElement.scrollTo({
                     left: 0,
                 });
+                return;
             }
             scrollableElement.scrollTo({
                 left: scrollPosition + state.currentSpeed,
             });
+            return;
         }
 
         if (scrollDirection === 'right') {
@@ -338,11 +340,13 @@ export const initInfiniteScroll = (
                 scrollableElement.scrollTo({
                     left: maxScroll,
                 });
+                return;
             }
 
             scrollableElement.scrollTo({
                 left: scrollPosition - state.currentSpeed,
             });
+            return;
         }
     };
 
