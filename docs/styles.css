@@ -1698,7 +1698,7 @@ html {
   .bg-video {
     top: 0;
     width: 100%;
-    left: 5%;
+    left: 0;
     height: auto;
     aspect-ratio: 16 / 9;
   }
