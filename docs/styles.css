@@ -2215,6 +2215,10 @@ html {
   letter-spacing: 0;
   line-height: 24px;
   text-transform: uppercase;
+  display: none;
+}
+.header-nav_visible {
+  display: block;
 }
 .header-nav a {
   color: #fff;
@@ -2257,6 +2261,21 @@ html {
   mask-repeat: no-repeat;
   mask-size: 180%, 16.66667rem;
   pointer-events: none;
+}
+@media screen and (max-width: 767px) {
+  .header-nav__list::after {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-nav__list {
+    position: fixed;
+    right: auto;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    box-shadow: -4px 4px 20px 0 #0000001A;
+  }
 }
 .header-nav__item,
 .header-nav__sub-item,
@@ -2322,6 +2341,14 @@ html {
   background: linear-gradient(to right, #0000, #1111112b);
   content: ' ';
 }
+@media screen and (max-width: 767px) {
+  .header-nav__sub-list {
+    position: fixed;
+    right: auto;
+    left: 0;
+    box-shadow: -4px 4px 20px 0 #0000001A;
+  }
+}
 .header-nav__item:focus-within .header-nav__sub-list {
   display: block;
 }
@@ -2339,11 +2366,24 @@ html {
   color: #474747;
   list-style-type: none;
 }
+@media screen and (max-width: 767px) {
+  .header-nav__inner-list {
+    position: fixed;
+    right: auto;
+    left: 0;
+  }
+}
 .header-nav__sub-item:focus-within .header-nav__inner-list {
   display: block;
 }
 .header-nav__hotline {
   margin-top: 6.4rem;
+}
+@media screen and (max-width: 767px) {
+  .header-nav__hotline {
+    position: absolute;
+    bottom: 2.8rem;
+  }
 }
 .header-nav__hotline-text {
   margin-bottom: 0.66667rem;
@@ -2357,5 +2397,27 @@ html {
   font-family: var(--font-oswald);
   text-decoration: none;
   white-space: nowrap;
+}
+.header-nav__close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.33333rem;
+  z-index: 30;
+  width: 2rem;
+  height: 2.33333rem;
+  background-image: url(48a0fe675971a840689e.svg);
+  background-repeat: no-repeat;
+  appearance: none;
+  border: 0;
+  background-color: #0000;
+  cursor: pointer;
+}
+@media screen and (max-width: 767px) {
+  .nav-body-no-mobile-overflow {
+    overflow: hidden;
+  }
+}
+.nav-header-no-animation {
+  animation: none;
 }
 
