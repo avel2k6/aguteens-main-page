@@ -1955,6 +1955,7 @@ html {
     top: 0.93333rem;
     left: 5.66667rem;
     height: 3.13333rem;
+    width: 3.33333rem;
   }
 }
 .header__logo__family {
@@ -2371,8 +2372,8 @@ html {
   }
 }
 .header-nav__hotline {
-  margin-top: 6.4rem;
   z-index: -1;
+  margin-top: 6.4rem;
 }
 @media screen and (max-width: 767px) {
   .header-nav__hotline {
