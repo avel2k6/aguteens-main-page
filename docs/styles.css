@@ -2031,7 +2031,7 @@ html {
   gap: 1.33333rem;
 }
 .header__links-item-content {
-  display: block;
+  display: none;
 }
 .header__links-item:focus-within .header__links-item-content {
   display: block;
@@ -2230,21 +2230,21 @@ html {
   box-sizing: border-box;
   padding: 2.4rem 1.73333rem;
   margin: 0;
+  animation: appear 0.2s linear;
   backdrop-filter: blur(20px);
   background-color: #DB1933CC;
   list-style-type: none;
-  animation: appear 0.2s linear;
 }
-.header-nav__list:before {
-  content: ' ';
-  display: block;
-  height: 100%;
-  width: 7px;
+.header-nav__list::before {
   position: absolute;
+  z-index: 10;
   top: 0;
   left: -7px;
-  background: linear-gradient(to right, #00000000, #1111112b);
-  z-index: 10;
+  display: block;
+  width: 7px;
+  height: 100%;
+  background: linear-gradient(to right, #0000, #1111112b);
+  content: ' ';
 }
 .header-nav__item,
 .header-nav__sub-item,
@@ -2299,16 +2299,16 @@ html {
 .header-nav__sub-list a {
   color: #474747;
 }
-.header-nav__sub-list:before {
-  content: ' ';
-  display: block;
-  height: 100%;
-  width: 7px;
+.header-nav__sub-list::before {
   position: absolute;
+  z-index: 10;
   top: 0;
   left: -7px;
-  background: linear-gradient(to right, #00000000, #1111112b);
-  z-index: 10;
+  display: block;
+  width: 7px;
+  height: 100%;
+  background: linear-gradient(to right, #0000, #1111112b);
+  content: ' ';
 }
 .header-nav__item:focus-within .header-nav__sub-list {
   display: block;
@@ -2334,11 +2334,11 @@ html {
   margin-top: 6.4rem;
 }
 .header-nav__hotline-text {
-  color: #fff;
-  text-transform: none;
-  font-size: 1.2rem;
-  font-family: var(--font-ultra-light);
   margin-bottom: 0.66667rem;
+  color: #fff;
+  font-family: var(--font-ultra-light);
+  font-size: 1.2rem;
+  text-transform: none;
   white-space: nowrap;
 }
 .header-nav__hotline-phone {
