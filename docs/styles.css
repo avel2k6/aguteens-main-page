@@ -2223,14 +2223,14 @@ html {
 
 @keyframes appear-decktop {
   0% {
+    right: -3.33333rem;
     overflow: hidden;
     width: 0;
-    right: -3.33333rem;
   }
   99% {
+    right: 0rem;
     overflow: hidden;
     width: 16.66667rem;
-    right: 0rem;
   }
   100% {
     overflow: visible;
@@ -2239,14 +2239,28 @@ html {
 }
 @keyframes appear-mobile {
   0% {
+    left: -3.33333rem;
     overflow: hidden;
     width: 0;
-    left: -3.33333rem;
+  }
+  99% {
+    right: 0rem;
+    overflow: hidden;
+    width: 16.66667rem;
+  }
+  100% {
+    overflow: visible;
+    width: 16.66667rem;
+  }
+}
+@keyframes appear-common {
+  0% {
+    overflow: hidden;
+    width: 0;
   }
   99% {
     overflow: hidden;
     width: 16.66667rem;
-    right: 0rem;
   }
   100% {
     overflow: visible;
@@ -2368,7 +2382,7 @@ html {
   width: 16.66667rem;
   box-sizing: border-box;
   padding: 2.4rem 1.73333rem;
-  animation: appear-decktop 0.2s ease-in-out;
+  animation: appear-common 0.2s ease-in-out;
   backdrop-filter: blur(20px);
   background: #FFFC;
   color: #474747;
@@ -2394,7 +2408,6 @@ html {
     right: auto;
     left: 0;
     box-shadow: -4px 4px 20px 0 #0000001A;
-    animation: appear-mobile 0.2s linear;
   }
 }
 .header-nav__inner-list {
@@ -2405,7 +2418,7 @@ html {
   width: 16.66667rem;
   box-sizing: border-box;
   padding: 2.4rem 1.73333rem;
-  animation: appear-decktop 0.2s ease-in-out;
+  animation: appear-common 0.2s ease-in-out;
   backdrop-filter: blur(20px);
   background: #FFFC;
   color: #474747;
@@ -2427,7 +2440,6 @@ html {
     position: fixed;
     right: auto;
     left: 0;
-    animation: appear-mobile 0.2s linear;
   }
 }
 .header-nav__hotline {
