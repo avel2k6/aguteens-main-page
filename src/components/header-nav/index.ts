@@ -1,5 +1,7 @@
 import './index.less';
 
+const OPEN_TIMEOUT = 100;
+
 const attributes = {
     showNav: 'data-show-nav',
     closeNav: 'data-close-nav',
@@ -44,7 +46,12 @@ export const initHeaderNav = () => {
 
     const handleShow = () => {
         state.isOpened = true;
-        render();
+        setTimeout(
+            () => {
+                render();
+            },
+            OPEN_TIMEOUT
+        );
     };
 
     const handleClose = () => {
