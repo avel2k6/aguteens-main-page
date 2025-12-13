@@ -4,15 +4,15 @@
 
 @keyframes appear-decktop {
   0% {
+    right: calcrem(-50);
     overflow: hidden;
     width: 0;
-    right: calcrem(-50);
   }
 
   99% {
+    right: calcrem(0);
     overflow: hidden;
     width: calcrem(@menu-width);
-    right: calcrem(0);
   }
 
   100% {
@@ -23,15 +23,15 @@
 
 @keyframes appear-mobile {
   0% {
+    left: calcrem(-50);
     overflow: hidden;
     width: 0;
-    left: calcrem(-50);
   }
 
   99% {
+    right: calcrem(0);
     overflow: hidden;
     width: calcrem(@menu-width);
-    right: calcrem(0);
   }
 
   100% {

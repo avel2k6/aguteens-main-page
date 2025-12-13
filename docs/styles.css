@@ -458,11 +458,21 @@ html {
   height: 100%;
   background-color: rgba(255, 255, 255, 0.1);
   content: ' ';
-  mask-image: url(e505203032cbdc321fec.svg);
+  mask-image: url(915d7eef96ff72290c7d.svg);
   mask-position: center;
   mask-repeat: no-repeat;
-  mask-size: 60%, 60%;
+  mask-size: 70%, 70%;
   pointer-events: none;
+}
+@media screen and (max-width: 1023px) {
+  .page__block_footer::after {
+    mask-size: 150%, 150%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .page__block_footer::after {
+    mask-size: 200%, 200%;
+  }
 }
 .page__block_bottom {
   background-color: var(--color-secondary);
@@ -1856,20 +1866,11 @@ html {
   transform: rotate(90deg);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .header {
   position: fixed;
   z-index: 200;
   width: 100%;
   min-height: 20rem;
-  animation: fadeIn 2s ease-in-out forwards;
   background: #0000;
   transition: all 0.2s ease-in-out;
 }
@@ -1913,6 +1914,11 @@ html {
   .header__logo__agu {
     top: 8.66667rem;
   }
+  .header__logo__agu_scrolled {
+    top: 1.73333rem;
+    width: 6.6rem;
+    left: 0.26667rem;
+  }
 }
 @media screen and (max-width: 767px) {
   .header__logo__agu {
@@ -1945,6 +1951,12 @@ html {
 @media screen and (max-width: 1023px) {
   .header__logo__arcs {
     top: 4rem;
+  }
+  .header__logo__arcs_scrolled {
+    top: 0.93333rem;
+    left: 5.66667rem;
+    height: 3.13333rem;
+    width: 3.33333rem;
   }
 }
 @media screen and (max-width: 767px) {
@@ -1980,6 +1992,11 @@ html {
   .header__logo__family {
     top: 10.2rem;
   }
+  .header__logo__family_scrolled {
+    top: 2.86667rem;
+    left: 0.26667rem;
+    width: 3.06667rem;
+  }
 }
 @media screen and (max-width: 767px) {
   .header__logo__family {
@@ -2011,6 +2028,11 @@ html {
 @media screen and (max-width: 1023px) {
   .header__logo__forum {
     top: 11.33333rem;
+  }
+  .header__logo__forum_scrolled {
+    top: 2.86667rem;
+    left: 3.6rem;
+    width: 1.93333rem;
   }
 }
 @media screen and (max-width: 767px) {
@@ -2199,14 +2221,32 @@ html {
   height: auto;
 }
 
-@keyframes appear {
+@keyframes appear-decktop {
   0% {
     overflow: hidden;
     width: 0;
+    right: -3.33333rem;
   }
   99% {
     overflow: hidden;
     width: 16.66667rem;
+    right: 0rem;
+  }
+  100% {
+    overflow: visible;
+    width: 16.66667rem;
+  }
+}
+@keyframes appear-mobile {
+  0% {
+    overflow: hidden;
+    width: 0;
+    left: -3.33333rem;
+  }
+  99% {
+    overflow: hidden;
+    width: 16.66667rem;
+    right: 0rem;
   }
   100% {
     overflow: visible;
@@ -2235,7 +2275,7 @@ html {
   box-sizing: border-box;
   padding: 2.4rem 1.73333rem;
   margin: 0;
-  animation: appear 0.2s linear;
+  animation: appear-decktop 0.2s linear;
   backdrop-filter: blur(20px);
   background-color: #DB1933CC;
   list-style-type: none;
@@ -2281,6 +2321,7 @@ html {
     min-height: 100vh;
     min-height: 100dvh;
     box-shadow: -4px 4px 20px 0 #0000001A;
+    animation: appear-mobile 0.2s linear;
   }
 }
 .header-nav__item,
@@ -2327,7 +2368,7 @@ html {
   width: 16.66667rem;
   box-sizing: border-box;
   padding: 2.4rem 1.73333rem;
-  animation: appear 0.2s linear;
+  animation: appear-decktop 0.2s ease-in-out;
   backdrop-filter: blur(20px);
   background: #FFFC;
   color: #474747;
@@ -2353,6 +2394,7 @@ html {
     right: auto;
     left: 0;
     box-shadow: -4px 4px 20px 0 #0000001A;
+    animation: appear-mobile 0.2s linear;
   }
 }
 .header-nav__inner-list {
@@ -2363,17 +2405,29 @@ html {
   width: 16.66667rem;
   box-sizing: border-box;
   padding: 2.4rem 1.73333rem;
-  animation: appear 0.2s linear;
+  animation: appear-decktop 0.2s ease-in-out;
   backdrop-filter: blur(20px);
   background: #FFFC;
   color: #474747;
   list-style-type: none;
+}
+.header-nav__inner-list::before {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: -7px;
+  display: block;
+  width: 7px;
+  height: 100%;
+  background: linear-gradient(to right, #0000, #1111112b);
+  content: ' ';
 }
 @media screen and (max-width: 767px) {
   .header-nav__inner-list {
     position: fixed;
     right: auto;
     left: 0;
+    animation: appear-mobile 0.2s linear;
   }
 }
 .header-nav__hotline {
