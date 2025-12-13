@@ -11,9 +11,13 @@
 
     &_main {
       display: flex;
-      height: calcrem(712);
+      height: 100vh;
       align-items: flex-end;
       background: linear-gradient(90deg, rgb(32 32 32 / 40%) 49.04%, rgb(32 32 32 / 0%) 100%), url("../../images/1-block.png") lightgray 50% / cover no-repeat;
+
+      .tablet-screen({
+        height: calcrem(712);
+      });
 
       .mobile-screen({
         align-items: flex-start;
@@ -114,7 +118,7 @@
     });
 
     &_centered {
-      max-width: 1024px;
+      max-width: calcrem(1024);
       margin: 0 auto;
     }
 

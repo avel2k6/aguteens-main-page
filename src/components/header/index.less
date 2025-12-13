@@ -28,7 +28,8 @@
 
   &__content_centered {
     display: flex;
-    max-width: 1024px;
+    min-width: calcrem(360);
+    max-width: calcrem(1024);
     justify-content: space-between;
     padding: 0 calcrem(100);
     margin: 0 auto;
@@ -43,7 +44,7 @@
 
     &__agu {
       position: absolute;
-      top: calcrem(130);
+      top: calc(100vh - calcrem(570));
       left:  calcrem(-59);
       width: calcrem(138);
       height: calcrem(20);
@@ -55,6 +56,10 @@
         top: calcrem(26);
         width: calcrem(99);
       }
+
+      .tablet-screen({
+        top: calcrem(130);
+      });
 
       .mobile-screen({
         top: calcrem(86);
@@ -71,7 +76,7 @@
 
     &__arcs {
       position: absolute;
-      top: calcrem(60);
+      top: calc(100vh - calcrem(645));
       left:  calcrem(-27);
       width: calcrem(213);
       height: calcrem(213);
@@ -85,6 +90,10 @@
         left: calcrem(24);
         height: calcrem(47);
       }
+
+      .tablet-screen({
+        top: calcrem(60);
+      });
 
       .mobile-screen({
         top: calcrem(29);
@@ -102,7 +111,7 @@
 
     &__family {
       position: absolute;
-      top: calcrem(153);
+      top: calc(100vh - calcrem(550));
       left: 0;
       width: calcrem(76);
       height: calcrem(11);
@@ -115,6 +124,10 @@
         left:  calcrem(-58);
         width: calcrem(50);
       }
+
+      .tablet-screen({
+        top: calcrem(153);
+      });
 
       .mobile-screen({
         top: calcrem(103);
@@ -131,7 +144,7 @@
 
     &__forum {
       position: absolute;
-      top: calcrem(170);
+      top: calc(100vh - calcrem(540));
       left: calcrem(29);
       width: calcrem(47);
       height: calcrem(11);
@@ -144,6 +157,10 @@
         left:  calcrem(-6);
         width: calcrem(30);
       }
+
+      .tablet-screen({
+        top: calcrem(170);
+      });
 
       .mobile-screen({
         top: calcrem(114);
@@ -164,6 +181,14 @@
     height: calcrem(70);
     align-items: center;
     gap: calcrem(20);
+  }
+
+  &__links-item-content {
+    display: none;
+  }
+
+  &__links-item:focus-within &__links-item-content {
+    display: block;
   }
 
   &__link {

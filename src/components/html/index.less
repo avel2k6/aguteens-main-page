@@ -1,4 +1,10 @@
+@import url("../../common/adaptive");
+
 html {
   font-family: var(--font-main);
-  font-size: 15px;
+  font-size:calc(15 * 100vw / 1920);
+
+  .default-screen({
+    font-size: 15px;
+  })
 }

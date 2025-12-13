@@ -30,6 +30,7 @@ import { initHeaderListeners } from './components/header';
 import { initReplaceImageListeners } from './components/replace-image';
 import { initModalListeners } from './components/modal';
 import { initSpoiler } from './components/spoiler';
+import {initHeaderNav} from './components/header-nav';
 
 /**
  * Инициализация всех скриптов.
@@ -37,6 +38,10 @@ import { initSpoiler } from './components/spoiler';
 const initMainPage = () => {
     (() => {
         initHeaderListeners();
+    })();
+
+    (() => {
+        initHeaderNav();
     })();
 
     (() => {

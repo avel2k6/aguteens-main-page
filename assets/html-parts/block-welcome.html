@@ -1,0 +1,52 @@
+<!-- Приветственный блок -->
+<div class="page__block page__block_welcome">
+    <div class="noise"></div>
+    <div class="bg-video">
+        <iframe
+                src="https://vkvideo.ru/video_ext.php?autoplay=1&muted=1&loop=1&hd=1&oid=-210779218&id=456240981&hash=5b408da427a656e5"
+                width="100%"
+                style="{aspect-ratio: 16 / 9}"
+                frameborder="0"
+                allowfullscreen="1"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+        ></iframe>
+    </div>
+    <div class="page__content page__content_centered">
+        <div class="block-welcome">
+            <div class="block-welcome__text">
+                Приходи!
+                Будет нескучно!
+            </div>
+            <div class="block-welcome__buttons">
+                <div class="block-welcome__top">
+                    <button
+                            class="play-button"
+                            data-modal-content=".block-welcome .modals .block-welcome__modal_content-1"
+                            data-modal-bg-color="#202020E5"
+                    ></button>
+                </div>
+                <div class="block-welcome__bottom">
+                    <a class="buy-button" href="#">
+                        <span class="buy-button__text">БИЛЕТ<br>НА&nbsp;ФОРУМ</span>
+                    </a>
+                </div>
+            </div>
+
+            <!--  Модальные окна со своей версткой для блока -->
+            <div class="modals modals_hidden">
+                <div class="block-welcome__modal block-welcome__modal_content-1">
+                    <div class="block-welcome__modal__video">
+                        <iframe
+                                src="https://vkvideo.ru/video_ext.php?oid=-210779218&id=456240981&hash=5b408da427a656e5"
+                                width="100%"
+                                height="636px"
+                                frameborder="0"
+                                allowfullscreen="1"
+                                style="background-color: #000"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

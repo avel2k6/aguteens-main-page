@@ -1,3 +1,5 @@
+@big-screen-breakpoint: 1920px;
+
 @tablet-screen-breakpoint: 1024px;
 
 @mobile-screen-breakpoint: 768px;
@@ -10,6 +12,12 @@
 
 .mobile-screen(@rules) {
   @media screen and (max-width: (@mobile-screen-breakpoint - 1)) {
+    @rules();
+  }
+}
+
+.default-screen(@rules) {
+  @media screen and (max-width: (@big-screen-breakpoint - 1)) {
     @rules();
   }
 }

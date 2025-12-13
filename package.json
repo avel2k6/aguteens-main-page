@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "@types/less": "^3.0.8",
+    "html-loader": "^5.1.0",
     "postcss-less": "^6.0.0"
   }
 }
