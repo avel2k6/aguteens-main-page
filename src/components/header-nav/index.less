@@ -54,6 +54,22 @@
       background: linear-gradient(to right, #0000, #1111112b);
       content: ' ';
     }
+
+    &::after {
+      position: absolute;
+      top:0;
+      left: 0;
+      display: block;
+      width: calcrem(@menu-width);
+      height: 100%;
+      background-color: rgb(255 255 255 / 10%);
+      content: ' ';
+      mask-image: url("../../icons/arcs.svg");
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 180%, calcrem(@menu-width);
+      pointer-events: none;
+    }
   }
 
 
