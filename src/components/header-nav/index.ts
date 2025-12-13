@@ -8,6 +8,9 @@ const attributes = {
 const classes = {
     component: 'header-nav',
     visible: 'header-nav_visible',
+    list: 'header-nav__list',
+    subList: 'header-nav__sub-list',
+    innerList: 'header-nav__inner-list',
 };
 
 
@@ -22,8 +25,12 @@ const headerClasses = {
 };
 
 export const initHeaderNav = () => {
-    const state = {
+    const state: {
+        isOpened: boolean;
+        clickedElement: Element | null;
+    } = {
         isOpened: false,
+        clickedElement: null,
     };
 
     const component = document.querySelector(`.${classes.component}`);
@@ -43,11 +50,48 @@ export const initHeaderNav = () => {
 
     const handleClose = () => {
         state.isOpened = false;
+        state.clickedElement = null;
         render();
     };
 
     opener?.addEventListener('click', handleShow);
     closer?.addEventListener('click', handleClose);
+    component.addEventListener('click', (e: Event) => {
+        const { target } = e;
+        if (!(target instanceof Element)) {
+            return;
+        }
+
+        const isList = target.classList.contains(classes.list);
+
+        if (isList) {
+            state.clickedElement = null;
+            render();
+            return;
+        }
+
+        const link = target.closest('a[href="#"]');
+        if (link) {
+            state.clickedElement = link;
+            render();
+            return;
+        }
+    });
+
+    document.body.addEventListener('click', (e) => {
+        const { target } = e;
+        if (!(target instanceof Element)) {
+            return;
+        }
+
+        const isOutside = !target.closest(`.${classes.component}`) && !target.closest(`[${attributes.showNav}]`);
+        if (!isOutside) {
+            return;
+        }
+        state.isOpened = false;
+        state.clickedElement = null;
+        render();
+    });
 
 
     const render = () => {
@@ -55,11 +99,26 @@ export const initHeaderNav = () => {
             component.classList.add(classes.visible);
             document.body.classList.add(bodyClasses.noOverflow);
             header?.classList.add(headerClasses.noAnimation);
-            return;
+        } else {
+            component.classList.remove(classes.visible);
+            document.body.classList.remove(bodyClasses.noOverflow);
+            header?.classList.remove(headerClasses.noAnimation);
+            component.querySelectorAll(`.${classes.subList}`).forEach((subList) => subList.classList.remove(classes.visible));
+            component.querySelectorAll(`.${classes.innerList}`).forEach((innerList) => innerList.classList.remove(classes.visible));
         }
 
-        component.classList.remove(classes.visible);
-        document.body.classList.remove(bodyClasses.noOverflow);
-        header?.classList.remove(headerClasses.noAnimation);
+        if (state.clickedElement) {
+            Array.from(component.querySelectorAll(`.${classes.subList}`))
+                .filter((sublist) => !sublist.contains(state.clickedElement))
+                .forEach((subList) => subList.classList.remove(classes.visible));
+
+            Array.from(component.querySelectorAll(`.${classes.innerList}`))
+                .forEach((innerList) => innerList.classList.remove(classes.visible));
+
+            state.clickedElement.nextElementSibling?.classList.add(classes.visible);
+        } else {
+            component.querySelectorAll(`.${classes.subList}`).forEach((subList) => subList.classList.remove(classes.visible));
+            component.querySelectorAll(`.${classes.innerList}`).forEach((innerList) => innerList.classList.remove(classes.visible));
+        }
     };
 };

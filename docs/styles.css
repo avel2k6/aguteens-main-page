@@ -2349,9 +2349,6 @@ html {
     box-shadow: -4px 4px 20px 0 #0000001A;
   }
 }
-.header-nav__item:focus-within .header-nav__sub-list {
-  display: block;
-}
 .header-nav__inner-list {
   position: absolute;
   top: 0;
@@ -2372,9 +2369,6 @@ html {
     right: auto;
     left: 0;
   }
-}
-.header-nav__sub-item:focus-within .header-nav__inner-list {
-  display: block;
 }
 .header-nav__hotline {
   margin-top: 6.4rem;
@@ -2411,6 +2405,9 @@ html {
   background-image: url(48a0fe675971a840689e.svg);
   background-repeat: no-repeat;
   cursor: pointer;
+}
+.header-nav_visible {
+  display: block;
 }
 @media screen and (max-width: 767px) {
   .nav-body-no-mobile-overflow {

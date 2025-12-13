@@ -159,10 +159,6 @@
     });
   }
 
-  &__item:focus-within &__sub-list {
-    display: block;
-  }
-
   &__inner-list {
     position: absolute;
     top: 0;
@@ -182,10 +178,6 @@
       right: auto;
       left: 0;
     });
-  }
-
-  &__sub-item:focus-within &__inner-list {
-    display: block;
   }
 
   &__hotline {
@@ -225,6 +217,10 @@
     background-image: url("../../icons/x.svg");
     background-repeat: no-repeat;
     cursor: pointer;
+  }
+
+  &_visible {
+    display: block;
   }
 }
 
