@@ -2212,7 +2212,7 @@ html {
 .header-nav {
   display: none;
   font-family: var(--font-main);
-  font-size: 24px;
+  font-size: 1.6rem;
   letter-spacing: 0;
   line-height: 24px;
   text-transform: uppercase;
