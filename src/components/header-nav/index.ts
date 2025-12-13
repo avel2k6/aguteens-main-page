@@ -54,12 +54,12 @@ export const initHeaderNav = () => {
         if (state.isOpened) {
             component.classList.add(classes.visible);
             document.body.classList.add(bodyClasses.noOverflow);
-            header.classList.add(headerClasses.noAnimation);
+            header?.classList.add(headerClasses.noAnimation);
             return;
         }
 
         component.classList.remove(classes.visible);
         document.body.classList.remove(bodyClasses.noOverflow);
-        header.classList.remove(headerClasses.noAnimation);
+        header?.classList.remove(headerClasses.noAnimation);
     };
 };
