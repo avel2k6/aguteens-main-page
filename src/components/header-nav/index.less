@@ -2,16 +2,36 @@
 
 @menu-width: 250;
 
-@keyframes appear {
+@keyframes appear-decktop {
   0% {
     overflow: hidden;
     width: 0;
-
+    right: calcrem(-50);
   }
 
   99% {
     overflow: hidden;
     width: calcrem(@menu-width);
+    right: calcrem(0);
+  }
+
+  100% {
+    overflow: visible;
+    width: calcrem(@menu-width);
+  }
+}
+
+@keyframes appear-mobile {
+  0% {
+    overflow: hidden;
+    width: 0;
+    left: calcrem(-50);
+  }
+
+  99% {
+    overflow: hidden;
+    width: calcrem(@menu-width);
+    right: calcrem(0);
   }
 
   100% {
@@ -44,7 +64,7 @@
     box-sizing: border-box;
     padding: calcrem(36) calcrem(26);
     margin: 0;
-    animation: appear 0.2s linear;
+    animation: appear-decktop 0.2s linear;
     backdrop-filter: blur(20px);
     background-color: #DB1933CC;
     list-style-type: none;
@@ -89,6 +109,7 @@
       min-height: 100vh;
       min-height: 100dvh;
       box-shadow: -4px 4px 20px 0 #0000001A;
+      animation: appear-mobile 0.2s linear;
     });
   }
 
@@ -131,7 +152,7 @@
     width: calcrem(@menu-width);
     box-sizing: border-box;
     padding: calcrem(36) calcrem(26);
-    animation: appear 0.2s linear;
+    animation: appear-decktop 0.2s ease-in-out;
     backdrop-filter: blur(20px);
     background: #FFFC;
     color: #474747;
@@ -158,6 +179,7 @@
       right: auto;
       left: 0;
       box-shadow: -4px 4px 20px 0 #0000001A;
+      animation: appear-mobile 0.2s linear;
     });
   }
 
@@ -169,16 +191,29 @@
     width: calcrem(@menu-width);
     box-sizing: border-box;
     padding: calcrem(36) calcrem(26);
-    animation: appear 0.2s linear;
+    animation: appear-decktop 0.2s ease-in-out;
     backdrop-filter: blur(20px);
     background: #FFFC;
     color: #474747;
     list-style-type: none;
 
+    &::before {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: -7px;
+      display: block;
+      width: 7px;
+      height: 100%;
+      background: linear-gradient(to right, #0000, #1111112b);
+      content: ' ';
+    }
+
     .mobile-screen({
       position: fixed;
       right: auto;
       left: 0;
+      animation: appear-mobile 0.2s linear;
     });
   }
 

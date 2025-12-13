@@ -97,11 +97,19 @@
         height: 100%;
         background-color: rgb(255 255 255 / 10%);
         content: ' ';
-        mask-image: url("../../icons/big-arcs-4back.svg");
+        mask-image: url("../../icons/arcs.svg");
         mask-position: center;
         mask-repeat: no-repeat;
-        mask-size: 60%, 60%;
+        mask-size: 70%, 70%;
         pointer-events: none;
+
+        .tablet-screen({
+          mask-size: 150%, 150%;
+        });
+
+        .mobile-screen({
+          mask-size: 200%, 200%;
+        });
       }
     }
 

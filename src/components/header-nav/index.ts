@@ -1,6 +1,6 @@
 import './index.less';
 
-const OPEN_TIMEOUT = 100;
+const OPEN_TIMEOUT = 200;
 
 const attributes = {
     showNav: 'data-show-nav',
@@ -45,9 +45,9 @@ export const initHeaderNav = () => {
     const header = document.querySelector('.header');
 
     const handleShow = () => {
-        state.isOpened = true;
         setTimeout(
             () => {
+                state.isOpened = true;
                 render();
             },
             OPEN_TIMEOUT
@@ -55,6 +55,9 @@ export const initHeaderNav = () => {
     };
 
     const handleClose = () => {
+        if (!state.isOpened) {
+            return;
+        }
         state.isOpened = false;
         state.clickedElement = null;
         render();
@@ -62,6 +65,8 @@ export const initHeaderNav = () => {
 
     opener?.addEventListener('click', handleShow);
     closer?.addEventListener('click', handleClose);
+    document.addEventListener('scroll', handleClose);
+
     component.addEventListener('click', (e: Event) => {
         const { target } = e;
         if (!(target instanceof Element)) {
