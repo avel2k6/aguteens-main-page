@@ -381,7 +381,10 @@ html {
   display: flex;
   height: 100vh;
   align-items: flex-end;
-  background: linear-gradient(90deg, rgba(32, 32, 32, 0.4) 49.04%, rgba(32, 32, 32, 0) 100%), url(da905fb5aa48fa92471b.png) lightgray 50% / cover no-repeat;
+  background-color: linear-gradient(90deg, rgba(32, 32, 32, 0.4) 49.04%, rgba(32, 32, 32, 0) 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 @media screen and (max-width: 1023px) {
   .page__block_main {
@@ -2274,7 +2277,8 @@ html {
     right: auto;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    min-height: 100%;
     box-shadow: -4px 4px 20px 0 #0000001A;
   }
 }

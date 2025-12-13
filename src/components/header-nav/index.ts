@@ -45,7 +45,6 @@ export const initHeaderNav = () => {
     const handleShow = () => {
         state.isOpened = true;
         render();
-
     };
 
     const handleClose = () => {
