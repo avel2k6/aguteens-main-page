@@ -2372,6 +2372,7 @@ html {
 }
 .header-nav__hotline {
   margin-top: 6.4rem;
+  z-index: -1;
 }
 @media screen and (max-width: 767px) {
   .header-nav__hotline {
