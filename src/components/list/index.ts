@@ -66,11 +66,15 @@ export const initList = (
 
         if (state.openedIndex !== null) {
             const question = element.querySelector(`.${classes.question}[${dataAttributes.index}='${state.openedIndex}']`);
-            question.classList.add(classes.questionOpened);
+            if (question) {
+                question.classList.add(classes.questionOpened);
+            }
 
             const answer = element.querySelector(`.${classes.answer}[${dataAttributes.index}='${state.openedIndex}']`);
-            answer.classList.add(classes.answerOpened);
-            (answer as HTMLElement).style.height = `${answer.scrollHeight}px`;
+            if (answer) {
+                answer.classList.add(classes.answerOpened);
+                (answer as HTMLElement).style.height = `${answer.scrollHeight}px`;
+            }
         }
     };
 

@@ -1,0 +1,63 @@
+@import url("../../common/adaptive");
+
+.block-faq-with-image {
+  display: flex;
+  gap: calcrem(10);
+
+  .tablet-screen({
+    flex-direction: column;
+    gap: 0;
+  });
+
+  &__image {
+    width: calc(50% - calcrem(5));
+    height: calcrem(517);
+    flex: 1 0 0;
+    border-radius: var(--border-radius-default) var(--border-radius-default) 0;
+    background: lightgray 50% / cover no-repeat;
+
+    .tablet-screen({
+      min-width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--border-radius-default);
+      margin-bottom: calcrem(40);
+    });
+  }
+
+  &__content {
+    display: flex;
+    width: calc(50% - calcrem(5));
+    flex-direction: column;
+    justify-content: center;
+
+      &__title {
+        width: calcrem(300);
+        padding-left: calcrem(70);
+        margin-bottom: calcrem(50);
+        color: var(--font-color-dark);
+        font-family: var(--font-main);
+        font-size: var(--font-size-xxxxl);
+        font-style: normal;
+        font-weight: 900;
+        line-height: 90%;
+
+        .mobile-screen({
+          font-size: var(--font-size-xxxl);
+          margin-bottom: calcrem(30);
+          padding-left: 0;
+        })
+      }
+
+      &__list {
+        border-radius: 0 var(--border-radius-default) var(--border-radius-default)!important;
+        .mobile-screen({
+          border-radius: var(--border-radius-default)!important;
+        })
+      }
+
+    .tablet-screen({
+      width: 100%;
+    })
+  }
+}

@@ -3,23 +3,28 @@ import './index.less';
 const classes = {
     header: 'header',
     headerScrolled: 'header_scrolled',
-    contentCentered: 'header__content_centered',
-    logo: 'header__logo',
-    logoScrolled: 'header__logo_scrolled',
-    logoAgu: 'header__logo__agu',
-    logoAguScrolled: 'header__logo__agu_scrolled',
-    logoArcs: 'header__logo__arcs',
-    logoArcsScrolled: 'header__logo__arcs_scrolled',
-    logoFamily: 'header__logo__family',
-    logoFamilyScrolled: 'header__logo__family_scrolled',
-    logoForum: 'header__logo__forum',
-    logoForumScrolled: 'header__logo__forum_scrolled',
-    links: 'header__links',
-    link: 'header__link',
-    menu: 'header__link_menu',
-    cart: 'header__link_cart',
-    lk: 'header__link_lk',
+    // contentCentered: 'header__content_centered',
+    // logo: 'header__logo',
+    // logoScrolled: 'header__logo_scrolled',
+    // logoAgu: 'header__logo__agu',
+    // logoAguScrolled: 'header__logo__agu_scrolled',
+    // logoArcs: 'header__logo__arcs',
+    // logoArcsScrolled: 'header__logo__arcs_scrolled',
+    // logoFamily: 'header__logo__family',
+    // logoFamilyScrolled: 'header__logo__family_scrolled',
+    // logoForum: 'header__logo__forum',
+    // logoForumScrolled: 'header__logo__forum_scrolled',
+    // links: 'header__links',
+    // link: 'header__link',
+    // menu: 'header__link_menu',
+    // cart: 'header__link_cart',
+    // lk: 'header__link_lk',
 };
+//
+// const attributes = {
+//     scrolled: 'data-logo-scrolled',
+//     static: 'data-logo-static',
+// };
 
 /**
  * Инициализация событий для заголовка.
@@ -51,22 +56,12 @@ export const initHeaderListeners = () => {
      */
     const render = () => {
         const header = document.body.querySelector(`.${classes.header}`);
-        const logo = document.body.querySelector(`.${classes.logo}`);
-        const agu = document.body.querySelector(`.${classes.logoAgu}`);
-        const arcs = document.body.querySelector(`.${classes.logoArcs}`);
-        const family = document.body.querySelector(`.${classes.logoFamily}`);
-        const forum = document.body.querySelector(`.${classes.logoForum}`);
 
         /**
          * Список элементов, которые нужно изменить при скролле. Каждый элемент имеет класс, который нужно добавить или удалить.
          */
         const elements: {element: Element; scrollClass: string}[] = [
             { element: header, scrollClass: classes.headerScrolled},
-            { element: logo, scrollClass: classes.logoScrolled },
-            { element: agu, scrollClass: classes.logoAguScrolled },
-            { element: arcs, scrollClass: classes.logoArcsScrolled },
-            { element: family, scrollClass: classes.logoFamilyScrolled },
-            { element: forum, scrollClass: classes.logoForumScrolled },
         ];
 
         if (state.isScrolled) {

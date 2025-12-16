@@ -68,5 +68,10 @@ module.exports = {
             inject: 'body',
             template: 'assets/main.html',
         }),
+        new HtmlWebpackPlugin({
+            filename: 'contest.html',
+            inject: 'body',
+            template: 'assets/contest.html',
+        }),
     ],
 };

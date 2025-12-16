@@ -1,0 +1,24 @@
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  fill-opacity: 0;
+  text-decoration: none;
+
+  &:hover {
+    fill-opacity: 1;
+  }
+
+  &__image {
+    margin-bottom: calcrem(30);
+  }
+
+  &__text {
+    color: #fff;
+    font-family: var(--font-light);
+    font-size: calcrem(24);
+    line-height: 90%;
+    text-align: center;
+  }
+}

@@ -1,7 +1,10 @@
 @import url("../../common/adaptive");
 
 .block-main {
+  display: flex;
   height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
   color: var(--font-color-light);
 
   &__header {
@@ -24,29 +27,40 @@
     });
   }
 
-  &__counter {
+  &__brand {
     display: flex;
-    flex: 1 0 0;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-content: center;
     align-items: center;
-    padding: calcrem(90) 0 calcrem(70) calcrem(210);
-    gap: calcrem(30);
+    margin-bottom: calcrem(50);
 
     .mobile-screen({
-      box-sizing: border-box;
-      padding: calcrem(60) 0 calcrem(70) calcrem(170);
-      flex-direction: column;
-      max-width: calcrem(360);
-    });
+      margin-bottom: calcrem(20);
+    })
+  }
 
-    &__count-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  &__logo {
+    position: relative;
+    width: calcrem(220);
+  }
 
-    &__count{
+  &__info {
+    flex-grow: 1;
+    display: flex;
+    gap: calcrem(30);
+    align-items: center;
+
+    .mobile-screen({
+      flex-direction: column;
+    })
+  }
+
+  &__counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__count {
       font-family: var(--font-oswald);
       font-size: calcrem(56);
       font-style: normal;
@@ -87,6 +101,7 @@
       });
     }
   }
+
 
 
   &__preview {

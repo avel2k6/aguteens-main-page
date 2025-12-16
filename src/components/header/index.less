@@ -6,8 +6,8 @@
   width: 100%;
   min-height: calcrem(300);
   background: #0000;
+  pointer-events: none;
   transition: all 0.2s ease-in-out;
-
 
   &_scrolled {
     min-height: calcrem(75);
@@ -29,172 +29,12 @@
     })
   }
 
-  &__logo {
-    position: relative;
-
-    &__agu {
-      position: absolute;
-      top: calc(100vh - calcrem(570));
-      left:  calcrem(-59);
-      width: calcrem(138);
-      height: calcrem(20);
-      background: url("../../icons/AGU.svg") no-repeat;
-      background-size: contain;
-      transition: all 0.3s linear;
-
-      &_scrolled {
-        top: calcrem(26);
-        width: calcrem(99);
-      }
-
-      .tablet-screen({
-        top: calcrem(130);
-        &_scrolled {
-          top: calcrem(26);
-          width: calcrem(99);
-          left: calcrem(4);
-        }
-      });
-
-      .mobile-screen({
-        top: calcrem(86);
-        left:  calcrem(-8);
-        width: calcrem(105);
-
-        &_scrolled {
-          top: calcrem(26);
-          width: calcrem(99);
-          left: calcrem(4);
-        }
-      });
-    }
-
-    &__arcs {
-      position: absolute;
-      top: calc(100vh - calcrem(645));
-      left:  calcrem(-27);
-      width: calcrem(213);
-      height: calcrem(213);
-      background-image: url("../../icons/arcs.svg");
-      background-repeat: no-repeat;
-      background-size: contain;
-      transition: all 0.3s linear;
-
-      &_scrolled {
-        top: calcrem(14);
-        left: calcrem(24);
-        height: calcrem(47);
-      }
-
-      .tablet-screen({
-        top: calcrem(60);
-
-        &_scrolled {
-          top: calcrem(14);
-          left: calcrem(85);
-          height: calcrem(47);
-          width: calcrem(50);
-        }
-      });
-
-      .mobile-screen({
-        top: calcrem(29);
-        width: calcrem(149);
-        height: calcrem(163);
-        left: calcrem(10);
-
-        &_scrolled {
-          top: calcrem(14);
-          left: calcrem(85);
-          height: calcrem(47);
-          width: calcrem(50);
-        }
-      });
-    }
-
-    &__family {
-      position: absolute;
-      top: calc(100vh - calcrem(550));
-      left: 0;
-      width: calcrem(76);
-      height: calcrem(11);
-      background: url("../../icons/family.svg") no-repeat;
-      background-size: contain;
-      transition: all 0.3s linear;
-
-      &_scrolled {
-        top: calcrem(43);
-        left:  calcrem(-58);
-        width: calcrem(50);
-      }
-
-      .tablet-screen({
-        top: calcrem(153);
-        &_scrolled {
-          top: calcrem(43);
-          left: calcrem(4);
-          width: calcrem(46);
-        }
-      });
-
-      .mobile-screen({
-        top: calcrem(103);
-        left: calcrem(37);
-        width: calcrem(58);
-
-        &_scrolled {
-          top: calcrem(43);
-          left: calcrem(4);
-          width: calcrem(46);
-        }
-      });
-    }
-
-    &__forum {
-      position: absolute;
-      top: calc(100vh - calcrem(540));
-      left: calcrem(29);
-      width: calcrem(47);
-      height: calcrem(11);
-      background: url("../../icons/forum.svg") no-repeat;
-      background-size: contain;
-      transition: all 0.3s linear;
-
-      &_scrolled {
-        top: calcrem(43);
-        left:  calcrem(-6);
-        width: calcrem(30);
-      }
-
-      .tablet-screen({
-        top: calcrem(170);
-
-        &_scrolled {
-          top: calcrem(43);
-          left: calcrem(54);
-          width: calcrem(29);
-        }
-      });
-
-      .mobile-screen({
-        top: calcrem(114);
-        left: calcrem(57);
-        width: calcrem(36);
-
-        &_scrolled {
-          top: calcrem(43);
-          left: calcrem(54);
-          width: calcrem(29);
-        }
-      });
-    }
-  }
-
   &__links {
     display: flex;
     height: calcrem(70);
     align-items: center;
     gap: calcrem(20);
+    pointer-events: auto;
   }
 
   &__links-item-content {

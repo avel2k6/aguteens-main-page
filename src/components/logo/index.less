@@ -1,0 +1,140 @@
+@import url("../../common/adaptive");
+
+@keyframes startScroll {
+  0% {
+    position: fixed;
+    top: calcrem(200);
+  }
+
+  100% {
+    position: fixed;
+  }
+}
+
+
+.logo {
+  pointer-events: auto;
+  width: calcrem(220);
+  height: calcrem(220);
+
+  .mobile-screen({
+    width: calcrem(170);
+    height: calcrem(170);
+  });
+
+  &_scrolled {
+    position: fixed;
+    top: calcrem(0);
+    width: calcrem(220);
+    height: calcrem(220);
+    left: max(calc((100% - calcrem(1024))/2), calcrem(100));
+    z-index: 201;
+    animation: startScroll 0.2s linear;
+
+    .tablet-screen({
+      left: calcrem(100);
+    });
+
+    .mobile-screen({
+      left: calcrem(20);
+    });
+  }
+
+  &__wrapper {
+    position: relative;
+    z-index: 201;
+  }
+
+  &__arcs {
+    position: absolute;
+    top: 0;
+    right:  calcrem(20);
+    width: calcrem(213);
+    height: calcrem(220);
+    background-image: url("../../icons/arcs.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: all 0.3s linear;
+
+    .mobile-screen({
+      width: calcrem(150);
+      right:  calcrem(0);
+    });
+
+    &_scrolled {
+      top: calcrem(14);
+      left: calcrem(85);
+      height: calcrem(47);
+    }
+  }
+
+  &__agu {
+    position: absolute;
+    top: calcrem(70);
+    right: calcrem(120);
+    width: calcrem(138);
+    height: calcrem(20);
+    background: url("../../icons/AGU.svg") no-repeat;
+    background-size: contain;
+    transition: all 0.3s linear;
+
+    .mobile-screen({
+      top: calcrem(60);
+      width: calcrem(105);
+      right: calcrem(70);
+    });
+
+    &_scrolled {
+      left: calcrem(0);
+      top: calcrem(26);
+      width: calcrem(99);
+    }
+  }
+
+  &__family {
+    position: absolute;
+    top: calcrem(95);
+    right: calcrem(123);
+    width: calcrem(76);
+    height: calcrem(11);
+    background: url("../../icons/family.svg") no-repeat;
+    background-size: contain;
+    transition: all 0.3s linear;
+
+    .mobile-screen({
+      top: calcrem(75);
+      width: calcrem(58);
+      right: calcrem(70);
+    });
+
+    &_scrolled {
+      top: calcrem(43);
+      left:  calcrem(0);
+      width: calcrem(50);
+    }
+
+  }
+
+  &__forum {
+    position: absolute;
+    top: calcrem(110);
+    right: calcrem(123);
+    width: calcrem(47);
+    height: calcrem(11);
+    background: url("../../icons/forum.svg") no-repeat;
+    background-size: contain;
+    transition: all 0.3s linear;
+
+    .mobile-screen({
+      top: calcrem(85);
+      width: calcrem(35);
+      right: calcrem(72);
+    });
+
+    &_scrolled {
+      top: calcrem(43);
+      left:  calcrem(55);
+      width: calcrem(30);
+    }
+  }
+}

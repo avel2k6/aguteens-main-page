@@ -2,26 +2,32 @@ import './common/root.less';
 import './common/normalize.less';
 import './common/fonts.less';
 
-import './components/html';
-import './components/page';
-import './components/noise';
-import './components/block-main';
-import './components/block-links';
-import './components/block-offer';
-import './components/block-welcome';
-import './components/block-faq';
-import './components/block-cases';
-import './components/block-teachers';
-import './components/block-tickets';
-import './components/ticket';
-import './components/block-reviews';
-import './components/block-partners';
-import './components/block-video';
-import './components/footer';
-import './components/buy-button';
-import './components/block-bottom';
 import './components/bg-video';
+import './components/block-ages';
+import './components/block-bottom';
+import './components/block-carousel-big';
+import './components/block-faq';
+import './components/block-faq-with-image';
+import './components/block-icons';
+import './components/block-links';
+import './components/block-main';
+import './components/block-nominations';
+import './components/block-offer';
+import './components/block-partners';
+import './components/block-reviews';
+import './components/block-stages';
+import './components/block-carousel-medium';
+import './components/block-tickets';
+import './components/block-video';
+import './components/block-welcome';
+import './components/buy-button';
+import './components/footer';
+import './components/html';
+import './components/icons';
+import './components/noise';
+import './components/page';
 import './components/play-button';
+import './components/ticket';
 
 
 import { initList } from './components/list';
@@ -30,7 +36,8 @@ import { initHeaderListeners } from './components/header';
 import { initReplaceImageListeners } from './components/replace-image';
 import { initModalListeners } from './components/modal';
 import { initSpoiler } from './components/spoiler';
-import {initHeaderNav} from './components/header-nav';
+import { initHeaderNav } from './components/header-nav';
+import { initLogoListeners } from './components/logo';
 
 /**
  * Инициализация всех скриптов.
@@ -38,6 +45,10 @@ import {initHeaderNav} from './components/header-nav';
 const initMainPage = () => {
     (() => {
         initHeaderListeners();
+    })();
+
+    (() => {
+        initLogoListeners();
     })();
 
     (() => {
@@ -70,39 +81,39 @@ const initMainPage = () => {
     })();
 
     (() => {
-        const scrollableCases = document.querySelector('.block-cases__cards');
-        if (!scrollableCases) {
-            return;
-        }
-        if (!(scrollableCases instanceof HTMLDivElement)) {
-            return;
-        }
-        initInfiniteScroll(
-            scrollableCases,
-            {
-                direction: 'left',
-                infinite: true,
-                showControls: true,
+        const carouselsBig = document.querySelectorAll('.block-carousel-big__cards');
+
+        carouselsBig.forEach((carouselBig) => {
+            if (!(carouselBig instanceof HTMLDivElement)) {
+                return;
             }
-        );
+            initInfiniteScroll(
+                carouselBig,
+                {
+                    direction: 'left',
+                    infinite: true,
+                    showControls: true,
+                }
+            );
+        });
     })();
 
     (() => {
-        const scrollableCases = document.querySelector('.block-teachers__cards');
-        if (!scrollableCases) {
-            return;
-        }
-        if (!(scrollableCases instanceof HTMLDivElement)) {
-            return;
-        }
-        initInfiniteScroll(
-            scrollableCases,
-            {
-                direction: 'left',
-                infinite: true,
-                showControls: true,
+        const carouselsMedium = document.querySelectorAll('.block-carousel-medium__cards');
+
+        carouselsMedium.forEach((carouselMedium) => {
+            if (!(carouselMedium instanceof HTMLDivElement)) {
+                return;
             }
-        );
+            initInfiniteScroll(
+                carouselMedium,
+                {
+                    direction: 'left',
+                    infinite: true,
+                    showControls: true,
+                }
+            );
+        });
     })();
 
     (() => {
@@ -125,7 +136,7 @@ const initMainPage = () => {
     })();
 
     (() => {
-        const partnersFaqBlock = document.querySelector('.block-partners__faq-list');
+        const partnersFaqBlock = document.querySelector('.block-faq');
 
         if (!partnersFaqBlock) {
             return;

@@ -7,7 +7,6 @@
 
   &__block {
     position: relative;
-    z-index: 0;
 
     &_main {
       display: flex;
@@ -17,15 +16,6 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-
-      .tablet-screen({
-        height: calcrem(712);
-      });
-
-      .mobile-screen({
-        align-items: flex-start;
-        height: auto;
-      });
     }
 
     &_links {
@@ -145,6 +135,10 @@
 
     &_video {
       padding: calcrem(10) 0;
+    }
+
+    &_no-top-padding {
+      padding-top: 0;
     }
   }
 }

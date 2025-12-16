@@ -16,6 +16,10 @@ const classes = {
 export const initSpoiler = (
     element: HTMLDivElement,
 ) => {
+    if (!element) {
+        return;
+    }
+
     /**
      * Состояние компонента.
      */
