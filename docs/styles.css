@@ -2070,6 +2070,20 @@ html {
   display: flex;
   justify-content: space-between;
 }
+.ticket__bottom {
+  display: flex;
+  gap: 1.33333rem;
+}
+.ticket__right {
+  display: flex;
+  align-items: flex-end;
+}
+.ticket__shopper {
+  width: 2.66667rem;
+  height: 3.8rem;
+  background-image: url(51efc32f6feb97aa5a84.svg);
+  background-size: cover;
+}
 .ticket__type {
   font-family: var(--font-light);
   font-size: var(--font-size-xs);
@@ -2183,6 +2197,7 @@ html {
   line-height: 120%;
   /* 21.6px */
   transition: height 0.3s ease-in-out;
+  background-color: #F9F9F9;
 }
 @media screen and (max-width: 767px) {
   .list__answer {
