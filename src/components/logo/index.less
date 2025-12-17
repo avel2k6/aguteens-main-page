@@ -13,9 +13,9 @@
 
 
 .logo {
-  pointer-events: auto;
   width: calcrem(220);
   height: calcrem(220);
+  pointer-events: auto;
 
   .mobile-screen({
     width: calcrem(170);
@@ -24,11 +24,11 @@
 
   &_scrolled {
     position: fixed;
+    z-index: 201;
     top: calcrem(0);
+    left: max(calc((100% - calcrem(1024))/2), calcrem(100));
     width: calcrem(220);
     height: calcrem(220);
-    left: max(calc((100% - calcrem(1024))/2), calcrem(100));
-    z-index: 201;
     animation: startScroll 0.2s linear;
 
     .tablet-screen({
@@ -85,8 +85,8 @@
     });
 
     &_scrolled {
-      left: calcrem(0);
       top: calcrem(26);
+      left: calcrem(0);
       width: calcrem(99);
     }
   }
