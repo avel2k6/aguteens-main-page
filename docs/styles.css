@@ -2748,6 +2748,7 @@ html {
 }
 .nav-header-no-animation {
   animation: none;
+  z-index: 300;
 }
 
 @keyframes startScroll {
