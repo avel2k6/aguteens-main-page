@@ -60,7 +60,7 @@
 .header-nav {
   display: none;
   font-family: var(--font-main);
-  font-size: calcrem(24);
+  font-size: var(--font-size-xxl);
   letter-spacing: 0;
   line-height: 24px;
   text-transform: uppercase;
@@ -175,6 +175,10 @@
     color: #474747;
     list-style-type: none;
 
+    .mobile-screen({
+      box-shadow: -4px 4px 20px 0 #0000001A;
+    });
+
     a {
       color: #474747;
     }
@@ -195,7 +199,6 @@
       position: fixed;
       right: auto;
       left: 0;
-      box-shadow: -4px 4px 20px 0 #0000001A;
     });
   }
 
@@ -212,6 +215,11 @@
     background: #FFFC;
     color: #474747;
     list-style-type: none;
+
+    .mobile-screen({
+      box-shadow: -4px 4px 20px 0 #0000001A;
+    });
+
 
     &::before {
       position: absolute;
@@ -246,7 +254,7 @@
     margin-bottom: calcrem(10);
     color: #fff;
     font-family: var(--font-ultra-light);
-    font-size: calcrem(18);
+    font-size: var(--font-size-l);
     text-transform: none;
     white-space: nowrap;
   }

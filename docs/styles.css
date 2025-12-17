@@ -361,11 +361,9 @@ template {
 .bg-video {
   position: absolute;
   z-index: 1;
-  top: -55vh;
   display: flex;
   width: 100%;
-  height: 150vh;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 16 / 9;
 }
 @media screen and (max-width: 1023px) {
   .bg-video {
@@ -640,8 +638,13 @@ template {
 .block-faq__info-list {
   padding: 0 0 0 2rem;
   margin: 0 0 2rem;
-  font-size: 1.6rem;
+  font-size: var(--font-size-xxl);
   list-style-type: disc;
+}
+@media screen and (max-width: 767px) {
+  .block-faq__info-list {
+    font-size: var(--font-size-l);
+  }
 }
 
 .block-faq-with-image {
@@ -697,7 +700,7 @@ template {
 .block-faq-with-image__content__list {
   border-radius: 0 var(--border-radius-default) var(--border-radius-default) !important;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .block-faq-with-image__content__list {
     border-radius: var(--border-radius-default) !important;
   }
@@ -741,7 +744,7 @@ template {
 .block-icons__text {
   color: #fff;
   font-family: var(--font-light);
-  font-size: 1.6rem;
+  font-size: var(--font-size-xxl);
   line-height: 90%;
   text-align: center;
 }
@@ -816,10 +819,10 @@ template {
   width: 14.66667rem;
 }
 .block-main__info {
-  flex-grow: 1;
   display: flex;
-  gap: 2rem;
+  flex-grow: 1;
   align-items: center;
+  gap: 2rem;
 }
 @media screen and (max-width: 767px) {
   .block-main__info {
@@ -1204,22 +1207,36 @@ template {
   margin-bottom: 0.33333rem;
   color: #DB1933;
   font-family: var(--font-main);
-  font-size: 6.13333rem;
+  font-size: var(--font-size-xxxxxxl);
   font-weight: 900;
-  letter-spacing: -2%;
   line-height: 90%;
+}
+@media screen and (max-width: 767px) {
+  .block-stages__head {
+    font-size: var(--font-size-xxxxl);
+  }
 }
 .block-stages__subtitle {
   margin-bottom: 1.33333rem;
   color: #202020;
   font-family: var(--font-main);
-  font-size: 2.13333rem;
+  font-size: var(--font-size-xxxl);
+}
+@media screen and (max-width: 767px) {
+  .block-stages__subtitle {
+    font-size: var(--font-size-xxl);
+  }
 }
 .block-stages__info {
   font-family: var(--font-light);
-  font-size: 1.6rem;
+  font-size: var(--font-size-xxl);
   font-weight: 400;
   line-height: 120%;
+}
+@media screen and (max-width: 767px) {
+  .block-stages__info {
+    font-size: var(--font-size-l);
+  }
 }
 .block-stages__links {
   display: flex;
@@ -1246,11 +1263,16 @@ template {
   background-color: #202020;
   color: #FFF;
   font-family: var(--font-main);
-  font-size: 1.46667rem;
+  font-size: var(--font-size-xl);
   font-weight: 550;
   line-height: 90%;
   text-decoration: none;
   text-transform: uppercase;
+}
+@media screen and (max-width: 767px) {
+  .block-stages__link {
+    font-size: var(--font-size-m);
+  }
 }
 .block-stages__link::before {
   position: absolute;
@@ -1376,7 +1398,7 @@ template {
 }
 @media screen and (max-width: 767px) {
   .block-carousel-medium__card__title {
-    font-size: 1.26667rem;
+    font-size: var(--font-size-l);
   }
 }
 .block-carousel-medium__card__text {
@@ -1535,13 +1557,8 @@ template {
   position: relative;
   z-index: 2;
   display: flex;
-  min-height: 22.66667rem;
   justify-content: space-between;
-}
-@media screen and (max-width: 767px) {
-  .block-welcome {
-    min-height: 8rem;
-  }
+  height: 100%;
 }
 .block-welcome__text {
   display: flex;
@@ -1776,9 +1793,14 @@ html {
 .icon__text {
   color: #fff;
   font-family: var(--font-light);
-  font-size: 1.6rem;
+  font-size: var(--font-size-xxl);
   line-height: 90%;
   text-align: center;
+}
+@media screen and (max-width: 767px) {
+  .icon__text {
+    font-size: var(--font-size-l);
+  }
 }
 
 /* Анимация шума */
@@ -1819,7 +1841,7 @@ html {
 }
 .noise {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   width: 200%;
   height: 200vh;
   animation: animation-noise 0.2s infinite;
@@ -1882,6 +1904,7 @@ html {
   /* Чтобы шум не убегал за границы блока */
   overflow: hidden;
   background: url(b7530e08fa4937ef447a.png) lightgray 50% / cover no-repeat;
+  aspect-ratio: 16 / 9;
 }
 .page__block_cases {
   background: var(--color-primary);
@@ -1928,6 +1951,9 @@ html {
 }
 .page__content {
   padding: 4.66667rem 6.66667rem;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 }
 @media screen and (max-width: 767px) {
   .page__content {
@@ -2439,7 +2465,7 @@ html {
 .header-nav {
   display: none;
   font-family: var(--font-main);
-  font-size: 1.6rem;
+  font-size: var(--font-size-xxl);
   letter-spacing: 0;
   line-height: 24px;
   text-transform: uppercase;
@@ -2557,6 +2583,11 @@ html {
   color: #474747;
   list-style-type: none;
 }
+@media screen and (max-width: 767px) {
+  .header-nav__sub-list {
+    box-shadow: -4px 4px 20px 0 #0000001A;
+  }
+}
 .header-nav__sub-list a {
   color: #474747;
 }
@@ -2576,7 +2607,6 @@ html {
     position: fixed;
     right: auto;
     left: 0;
-    box-shadow: -4px 4px 20px 0 #0000001A;
   }
 }
 .header-nav__inner-list {
@@ -2592,6 +2622,11 @@ html {
   background: #FFFC;
   color: #474747;
   list-style-type: none;
+}
+@media screen and (max-width: 767px) {
+  .header-nav__inner-list {
+    box-shadow: -4px 4px 20px 0 #0000001A;
+  }
 }
 .header-nav__inner-list::before {
   position: absolute;
@@ -2625,7 +2660,7 @@ html {
   margin-bottom: 0.66667rem;
   color: #fff;
   font-family: var(--font-ultra-light);
-  font-size: 1.2rem;
+  font-size: var(--font-size-l);
   text-transform: none;
   white-space: nowrap;
 }
@@ -2670,9 +2705,9 @@ html {
   }
 }
 .logo {
-  pointer-events: auto;
   width: 14.66667rem;
   height: 14.66667rem;
+  pointer-events: auto;
 }
 @media screen and (max-width: 767px) {
   .logo {
@@ -2682,11 +2717,11 @@ html {
 }
 .logo_scrolled {
   position: fixed;
+  z-index: 201;
   top: 0rem;
+  left: max(calc((100% - 68.26667rem)/2), 6.66667rem);
   width: 14.66667rem;
   height: 14.66667rem;
-  left: max(calc((100% - 68.26667rem)/2), 6.66667rem);
-  z-index: 201;
   animation: startScroll 0.2s linear;
 }
 @media screen and (max-width: 1023px) {
@@ -2743,8 +2778,8 @@ html {
   }
 }
 .logo__agu_scrolled {
-  left: 0rem;
   top: 1.73333rem;
+  left: 0rem;
   width: 6.6rem;
 }
 .logo__family {

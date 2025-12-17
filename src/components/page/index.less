@@ -55,6 +55,7 @@
     &_welcome {
       /* Чтобы шум не убегал за границы блока */
       overflow: hidden;
+      aspect-ratio: 16 / 9;
       background:  url("../../images/3-block(VIDEO).png") lightgray 50% / cover no-repeat;
     }
 
@@ -109,6 +110,9 @@
   }
 
   &__content {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     padding: calcrem(70) calcrem(100);
 
     .mobile-screen({

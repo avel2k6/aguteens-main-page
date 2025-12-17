@@ -19,7 +19,11 @@
   &__info-list {
     padding: 0 0 0 calcrem(30);
     margin: 0 0 calcrem(30);
-    font-size: calcrem(24);
+    font-size: var(--font-size-xxl);
     list-style-type: disc;
+
+    .mobile-screen({
+      font-size: var(--font-size-l);
+    });
   }
 }

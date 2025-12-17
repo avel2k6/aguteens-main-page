@@ -1,3 +1,5 @@
+@import url("../../common/adaptive");
+
 .icon {
   display: flex;
   flex-direction: column;
@@ -17,8 +19,12 @@
   &__text {
     color: #fff;
     font-family: var(--font-light);
-    font-size: calcrem(24);
+    font-size: var( --font-size-xxl);
     line-height: 90%;
     text-align: center;
+
+    .mobile-screen({
+      font-size: var( --font-size-l);
+    });
   }
 }

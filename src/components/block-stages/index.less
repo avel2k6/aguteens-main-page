@@ -1,6 +1,5 @@
 @import url("../../common/adaptive");
 
-
 .block-stages {
   &__top {
     display: flex;
@@ -48,24 +47,35 @@
     margin-bottom: calcrem(5);
     color: #DB1933;
     font-family: var(--font-main);
-    font-size: calcrem(92);
+    font-size: var(--font-size-xxxxxxl);
     font-weight: 900;
-    letter-spacing: -2%;
     line-height: 90%;
+
+    .mobile-screen({
+      font-size: var(--font-size-xxxxl);
+    });
   }
 
   &__subtitle {
     margin-bottom: calcrem(20);
     color: #202020;
     font-family: var(--font-main);
-    font-size: calcrem(32);
+    font-size: var(--font-size-xxxl);
+
+    .mobile-screen({
+      font-size: var(--font-size-xxl);
+    });
   }
 
   &__info {
     font-family: var(--font-light);
-    font-size: calcrem(24);
+    font-size: var(--font-size-xxl);
     font-weight: 400;
     line-height: 120%;
+
+    .mobile-screen({
+      font-size: var(--font-size-l);
+    });
   }
 
   &__links {
@@ -93,11 +103,15 @@
     background-color: #202020;
     color:#FFF;
     font-family: var(--font-main);
-    font-size: calcrem(22);
+    font-size: var(--font-size-xl);
     font-weight: 550;
     line-height: 90%;
     text-decoration: none;
     text-transform: uppercase;
+
+    .mobile-screen({
+      font-size: var(--font-size-m);
+    });
 
     &::before {
       position: absolute;
