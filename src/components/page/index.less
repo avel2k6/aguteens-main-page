@@ -76,12 +76,39 @@
       background: var(--color-secondary);
     }
 
+    &_stages {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top:0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #BABABA;
+        content: ' ';
+        mask-image: url("../../icons/arcs.svg");
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: 70%, 70%;
+        pointer-events: none;
+
+        .tablet-screen({
+          mask-size: 150%, 150%;
+        });
+
+        .mobile-screen({
+          mask-size: 200%, 200%;
+        });
+      }
+    }
+
     &_footer {
       position: relative;
       background-color: var(--color-danger);
 
 
-      &::after {
+      &::before {
         position: absolute;
         top:0;
         display: block;

@@ -10,7 +10,9 @@
     gap: calcrem(20);
 
     .mobile-screen({
-      gap: calcrem(40);
+      gap: calcrem(20);
+      flex-direction: column;
+      margin-bottom: calcrem(40);
     });
   }
 
@@ -23,7 +25,9 @@
     line-height: 90%; /* 43.2px */
 
     .mobile-screen({
+      width: auto;
       font-size: var(--font-size-xxxl);
+      margin-bottom: calcrem(0);
     });
   }
 
@@ -37,7 +41,9 @@
     line-height: 120%; /* 28.8px */
 
     .mobile-screen({
+      width: auto;
       font-size: var(--font-size-m);
+      margin-bottom: calcrem(0);
     });
   }
 

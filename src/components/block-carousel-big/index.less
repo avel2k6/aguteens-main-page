@@ -3,18 +3,19 @@
 .block-carousel-big {
   &__top {
     display: flex;
-    max-width: 1024px;
     justify-content: space-between;
     margin: 0 auto;
     gap: calcrem(20);
 
     .mobile-screen({
-      gap: calcrem(80);
+      gap: calcrem(20);
+      flex-direction: column;
+      margin-bottom: calcrem(40);
     });
   }
 
   &__title {
-    margin-bottom: calcrem(60);
+    margin-bottom: calcrem(90);
     color: var(--font-color-light);
     font-family: var(--font-main);
     font-size: var(--font-size-xxxxl);
@@ -23,14 +24,15 @@
     line-height: 90%; /* 43.2px */
 
     .mobile-screen({
+      width: auto;
       font-size: var(--font-size-xxxl);
-      margin-bottom: calcrem(40);
+      margin-bottom: calcrem(0);
     });
   }
 
   &__text {
     width:  calcrem(429);
-    margin-bottom: calcrem(60);
+    margin-bottom: calcrem(90);
     color: var(--font-color-light);
     font-family: var(--font-light);
     font-size: var(--font-size-xxl);
@@ -39,8 +41,9 @@
     line-height: 120%; /* 28.8px */
 
     .mobile-screen({
+      width: auto;
       font-size: var(--font-size-m);
-      margin-bottom: calcrem(40);
+      margin-bottom: calcrem(0);
     });
   }
 
