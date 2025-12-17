@@ -2106,12 +2106,12 @@ html {
 }
 .ticket__class {
   display: inline-block;
+  padding: 0.26667rem 0.66667rem;
+  border-radius: 0.66667rem;
+  margin-bottom: 0.66667rem;
+  background-color: var(--color-danger);
   font-family: var(--font-light);
   line-height: var(--font-size-xs);
-  padding: 0.26667rem 0.66667rem 0.26667rem 0.66667rem;
-  border-radius: 0.66667rem;
-  background-color: var(--color-danger);
-  margin-bottom: 0.66667rem;
 }
 .ticket__title {
   margin-bottom: 0.66667rem;
@@ -2775,8 +2775,8 @@ html {
   z-index: 201;
   top: 0rem;
   left: max(calc((100% - 68.26667rem)/2), 6.66667rem);
-  width: 14.66667rem;
-  height: 14.66667rem;
+  width: 10.66667rem;
+  height: 5.33333rem;
   animation: startScroll 0.2s linear;
 }
 @media screen and (max-width: 1023px) {
@@ -2813,6 +2813,7 @@ html {
 .logo__arcs_scrolled {
   top: 0.93333rem;
   left: 5.66667rem;
+  width: 3.33333rem;
   height: 3.13333rem;
 }
 .logo__agu {
