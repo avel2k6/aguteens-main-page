@@ -2,10 +2,10 @@
 
 
 .block-icons {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: calcrem(30);
-  position: relative;
 
   .mobile-screen({
     justify-content: center;
@@ -47,9 +47,9 @@
 
   &__ticket {
     position: absolute;
-    bottom: calcrem(-120);
-    right: 0;
     z-index: 1;
+    right: 0;
+    bottom: calcrem(-120);
 
     .mobile-screen({
       bottom: calcrem(-65);
