@@ -5,6 +5,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: calcrem(30);
+  position: relative;
+
+  .mobile-screen({
+    justify-content: center;
+  });
 
   &__icon {
     display: flex;
@@ -24,7 +29,7 @@
     });
 
     .mobile-screen({
-      width: 100%;
+      width: 60%;
     })
   }
 
@@ -38,6 +43,17 @@
     font-size: var(--font-size-xxl);
     line-height: 90%;
     text-align: center;
+  }
+
+  &__ticket {
+    position: absolute;
+    bottom: calcrem(-120);
+    right: 0;
+    z-index: 1;
+
+    .mobile-screen({
+      bottom: calcrem(-65);
+    });
   }
 }
 
